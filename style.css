@@ -672,6 +672,7 @@ body {
    ========================================================================== */
 .view-viewport {
   height: calc(100vh - 72px);
+  max-height: calc(100vh - 72px);
   overflow-y: auto;
   position: relative;
 }
@@ -4486,7 +4487,8 @@ body {
   display: flex;
   gap: 24px;
   align-items: stretch;
-  height: calc(100vh - 120px);
+  min-height: 760px;
+  min-height: max(760px, calc(100vh - 120px));
 }
 
 .phone-container-wrapper {
@@ -4627,7 +4629,7 @@ body {
 .mobile-scroll-container {
   flex-grow: 1;
   overflow-y: auto;
-  padding-top: 38px;
+  padding-top: 0;
   padding-bottom: 74px;
   scrollbar-width: none;
 }
@@ -4640,7 +4642,7 @@ body {
   background-image: linear-gradient(to bottom, rgba(11, 18, 32, 0.45), rgba(11, 18, 32, 0.95)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80');
   background-size: cover;
   background-position: center;
-  padding: 16px 16px 24px;
+  padding: 48px 16px 24px;
   display: flex;
   flex-direction: column;
   gap: 16px;

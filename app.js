@@ -173,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================
   const validTabs = [
     'dashboard', 'projects', 'schedule', 'tasks', 'documents', 
-    'materials', 'contracts', 'gs3-portfolio', 'gs3-sop', 'gs3-mobile'
+    'gs3-portfolio', 'gs3-sop', 'gs3-mobile'
   ];
 
   const switchTab = (tabId, updateHash = true) => {
@@ -204,6 +204,13 @@ document.addEventListener('DOMContentLoaded', () => {
       if (contentId === `tab-content-${tabId}`) {
         tab.classList.add('active');
         foundTab = true;
+        // Reset scroll position for mobile simulator scroll container
+        if (tabId === 'gs3-mobile') {
+          const mobScroll = tab.querySelector('.mobile-scroll-container');
+          if (mobScroll) {
+            mobScroll.scrollTop = 0;
+          }
+        }
       } else {
         tab.classList.remove('active');
       }
