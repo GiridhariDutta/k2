@@ -173,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================
   const validTabs = [
     'dashboard', 'projects', 'schedule', 'tasks', 'documents', 
-    'materials', 'contracts', 'gs3-portfolio', 'gs3-sop'
+    'materials', 'contracts', 'gs3-portfolio', 'gs3-sop', 'gs3-mobile'
   ];
 
   const switchTab = (tabId, updateHash = true) => {
@@ -1166,6 +1166,241 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   });
+
+  // ==========================================
+  // K2 Mobile App Simulator Logic
+  // ==========================================
+  
+  const mobTaskCheckboxes = document.querySelectorAll('.mob-task-checkbox');
+  const mobProgressFill = document.getElementById('mobile-progress-fill');
+  const mobProgressPercentage = document.getElementById('mobile-progress-percentage');
+  const mobProgressTaskCount = document.getElementById('mobile-progress-task-count');
+  
+  const simProgressRange = document.getElementById('sim-progress-range');
+  const simProgressDisplay = document.getElementById('sim-progress-display');
+  
+  const btnThemeDark = document.getElementById('btn-theme-dark');
+  const btnThemeLight = document.getElementById('btn-theme-light');
+  const phoneViewport = document.querySelector('.phone-screen-viewport');
+  
+  const mobActionVoice = document.getElementById('mob-action-voice');
+  const mobActionDrawing = document.getElementById('mob-action-drawing');
+  const mobTabDrawingsTrigger = document.getElementById('mob-tab-drawings-trigger');
+  const mobTabTasksTrigger = document.getElementById('mob-tab-tasks-trigger');
+
+  // 1. Recalculate progress based on checked tasks
+  const updateMobileProgressGauge = (percent) => {
+    const rounded = Math.round(percent);
+    if (mobProgressPercentage) mobProgressPercentage.textContent = `${rounded}%`;
+    if (simProgressDisplay) simProgressDisplay.textContent = `${rounded}%`;
+    if (simProgressRange) simProgressRange.value = rounded;
+    if (mobProgressFill) {
+      mobProgressFill.setAttribute('stroke-dasharray', `${rounded}, 100`);
+    }
+  };
+
+  const calculateCheckboxProgress = () => {
+    let totalWeight = 0;
+    let completedWeight = 0;
+    
+    mobTaskCheckboxes.forEach(cb => {
+      const weight = parseInt(cb.getAttribute('data-task-weight') || '10');
+      totalWeight += weight;
+      if (cb.checked) {
+        completedWeight += weight;
+      }
+    });
+
+    const percent = totalWeight > 0 ? (completedWeight / totalWeight) * 100 : 0;
+    updateMobileProgressGauge(percent);
+
+    const scaledCompleted = Math.round((percent / 100) * 74);
+    if (mobProgressTaskCount) {
+      mobProgressTaskCount.textContent = `${scaledCompleted} of 74 tasks`;
+    }
+  };
+
+  // Bind checkbox events
+  mobTaskCheckboxes.forEach(cb => {
+    cb.addEventListener('change', () => {
+      const card = cb.closest('.mob-task-card');
+      const ringCircle = card.querySelector('.mob-ring-svg circle:nth-child(2)');
+      const ringText = card.querySelector('.mob-ring-percent');
+      
+      if (cb.checked) {
+        if (ringCircle) ringCircle.setAttribute('stroke-dasharray', '100, 100');
+        if (ringCircle) ringCircle.setAttribute('stroke', '#10B981');
+        if (ringText) ringText.textContent = '100%';
+      } else {
+        const originalPercent = cb.getAttribute('data-task-weight') === '15' ? '70%' :
+                               cb.getAttribute('data-task-weight') === '10' ? '40%' : '0%';
+        const originalDash = cb.getAttribute('data-task-weight') === '15' ? '70, 100' :
+                             cb.getAttribute('data-task-weight') === '10' ? '40, 100' : '0, 100';
+        const originalColor = cb.getAttribute('data-task-weight') === '15' ? '#2563EB' : '#F59E0B';
+        
+        if (ringCircle) ringCircle.setAttribute('stroke-dasharray', originalDash);
+        if (ringCircle) ringCircle.setAttribute('stroke', originalColor);
+        if (ringText) ringText.textContent = originalPercent;
+      }
+      
+      calculateCheckboxProgress();
+    });
+  });
+
+  // 2. Manual Progress Override Slider
+  if (simProgressRange) {
+    simProgressRange.addEventListener('input', (e) => {
+      const val = parseInt(e.target.value);
+      updateMobileProgressGauge(val);
+      
+      if (val === 0) {
+        mobTaskCheckboxes.forEach(cb => {
+          cb.checked = false;
+          const card = cb.closest('.mob-task-card');
+          const ringCircle = card.querySelector('.mob-ring-svg circle:nth-child(2)');
+          const ringText = card.querySelector('.mob-ring-percent');
+          if (ringCircle) ringCircle.setAttribute('stroke-dasharray', '0, 100');
+          if (ringText) ringText.textContent = '0%';
+        });
+      } else if (val === 100) {
+        mobTaskCheckboxes.forEach(cb => {
+          cb.checked = true;
+          const card = cb.closest('.mob-task-card');
+          const ringCircle = card.querySelector('.mob-ring-svg circle:nth-child(2)');
+          const ringText = card.querySelector('.mob-ring-percent');
+          if (ringCircle) ringCircle.setAttribute('stroke-dasharray', '100, 100');
+          if (ringCircle) ringCircle.setAttribute('stroke', '#10B981');
+          if (ringText) ringText.textContent = '100%';
+        });
+      }
+      
+      const scaledCompleted = Math.round((val / 100) * 74);
+      if (mobProgressTaskCount) {
+        mobProgressTaskCount.textContent = `${scaledCompleted} of 74 tasks`;
+      }
+    });
+  }
+
+  // 3. Theme Toggle Support
+  if (btnThemeDark && btnThemeLight && phoneViewport) {
+    btnThemeDark.addEventListener('click', () => {
+      phoneViewport.classList.remove('mobile-theme-light');
+      phoneViewport.classList.add('mobile-theme-dark');
+      btnThemeDark.classList.add('active');
+      btnThemeLight.classList.remove('active');
+    });
+
+    btnThemeLight.addEventListener('click', () => {
+      phoneViewport.classList.remove('mobile-theme-dark');
+      phoneViewport.classList.add('mobile-theme-light');
+      btnThemeLight.classList.add('active');
+      btnThemeDark.classList.remove('active');
+    });
+  }
+
+  // 4. Voice Dictation RFI Simulation
+  if (mobActionVoice && phoneViewport) {
+    mobActionVoice.addEventListener('click', () => {
+      const modal = document.createElement('div');
+      modal.className = 'mob-speech-overlay-modal';
+      modal.innerHTML = `
+        <div class="mob-speech-content-card">
+          <div class="mob-speech-header-row">
+            <span class="mob-speech-title font-header">Voice Report Agent</span>
+            <button class="mob-speech-close-btn">&times;</button>
+          </div>
+          
+          <div class="mob-speech-status-pill">
+            <span class="mob-pulse-dot"></span>
+            <span>LISTENING & TRANSCRIBING...</span>
+          </div>
+
+          <div class="mob-speech-transcription-box font-medium"></div>
+
+          <div class="mob-speech-wave-visualization">
+            <div class="mob-wave-bar"></div>
+            <div class="mob-wave-bar"></div>
+            <div class="mob-wave-bar"></div>
+            <div class="mob-wave-bar"></div>
+            <div class="mob-wave-bar"></div>
+            <div class="mob-wave-bar"></div>
+            <div class="mob-wave-bar"></div>
+            <div class="mob-wave-bar"></div>
+            <div class="mob-wave-bar"></div>
+            <div class="mob-wave-bar"></div>
+          </div>
+          
+          <p style="font-size: 9px; text-align: center; opacity: 0.6; margin: 0;">Dictating site status reports directly to Firestore database...</p>
+        </div>
+      `;
+      phoneViewport.appendChild(modal);
+
+      const transcriptText = "Good morning PM office. This is John Carter reporting on site from the Sunset Residence. I have successfully inspected the level 2 structural reinforcement. The tie beams are fully set and ready for inspection sign-off. Please upload these notes directly to the project files. Over.";
+      const textBox = modal.querySelector('.mob-speech-transcription-box');
+      const closeBtn = modal.querySelector('.mob-speech-close-btn');
+
+      closeBtn.addEventListener('click', () => {
+        modal.remove();
+      });
+
+      let charIndex = 0;
+      const typeSpeed = 40;
+      
+      const typeSpeech = () => {
+        if (charIndex < transcriptText.length && modal.parentNode) {
+          textBox.textContent += transcriptText.charAt(charIndex);
+          charIndex++;
+          textBox.scrollTop = textBox.scrollHeight;
+          setTimeout(typeSpeech, typeSpeed);
+        } else if (modal.parentNode) {
+          const statusText = modal.querySelector('.mob-speech-status-pill span:last-child');
+          const statusDot = modal.querySelector('.mob-pulse-dot');
+          const waveBars = modal.querySelectorAll('.mob-wave-bar');
+          
+          if (statusText) statusText.textContent = 'REPORT COMPILED & SYNCED';
+          if (statusDot) statusDot.style.backgroundColor = '#10B981';
+          
+          waveBars.forEach(bar => {
+            bar.style.animationPlayState = 'paused';
+            bar.style.height = '4px';
+          });
+          
+          showToast("Mobile RFI speech record sync complete!", "success");
+        }
+      };
+
+      setTimeout(typeSpeech, 800);
+    });
+  }
+
+  // 5. Deep Link Redirection to Drawings
+  const redirectToDrawingsTab = () => {
+    switchTab('documents');
+    showToast("Opening K2 blueprint drawings view...", "info");
+    
+    const structuralNode = document.querySelector('[data-file="structural"]');
+    if (structuralNode) {
+      structuralNode.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      structuralNode.classList.add('highlight-pulse');
+      setTimeout(() => {
+        structuralNode.classList.remove('highlight-pulse');
+      }, 3000);
+    }
+  };
+
+  if (mobActionDrawing) {
+    mobActionDrawing.addEventListener('click', redirectToDrawingsTab);
+  }
+  if (mobTabDrawingsTrigger) {
+    mobTabDrawingsTrigger.addEventListener('click', redirectToDrawingsTab);
+  }
+
+  if (mobTabTasksTrigger) {
+    mobTabTasksTrigger.addEventListener('click', () => {
+      switchTab('tasks');
+      showToast("Loading active detailed tasks list...", "info");
+    });
+  }
 
   // Initialize estimates
   updateProposalEstimates();

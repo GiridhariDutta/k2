@@ -120,6 +120,14 @@
           </svg>
           <span>Strategic Roadmap</span>
         </button>
+        
+        <button class="nav-item" data-tab="gs3-mobile" id="nav-gs3-mobile">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+            <line x1="12" y1="18" x2="12.01" y2="18" />
+          </svg>
+          <span>Mobile App Preview</span>
+        </button>
       </nav>
       
       <!-- Weather Widget -->
@@ -2025,6 +2033,480 @@
             <p class="text-xs text-main">
               💡 <strong>Proposal Status:</strong> This technology roadmap is fixed and negotiable based on final scope discovery. Sprints are billed bi-weekly at a flat rate of $3,500/sprint.
             </p>
+          </div>
+          </div>
+        </div>
+
+        <!-- ==================== GS3 MOBILE APP PREVIEW VIEW ==================== -->
+        <div class="view-tab" id="tab-content-gs3-mobile">
+          <div class="mobile-layout-container">
+            
+            <!-- Phone Shell Side (Left) -->
+            <div class="phone-container-wrapper">
+              <div class="phone-simulator-frame">
+                <!-- Phone Screen Viewport -->
+                <div class="phone-screen-viewport mobile-theme-dark">
+                  
+                  <!-- Phone Status Bar -->
+                  <div class="phone-status-bar">
+                    <span class="status-time">9:41</span>
+                    <div class="phone-notch-island"></div>
+                    <div class="status-indicators">
+                      <svg class="status-icon" viewBox="0 0 24 24" width="12" height="12" fill="currentColor">
+                        <rect x="2" y="16" width="3" height="5" rx="0.5"/>
+                        <rect x="7" y="12" width="3" height="9" rx="0.5"/>
+                        <rect x="12" y="8" width="3" height="13" rx="0.5"/>
+                        <rect x="17" y="3" width="3" height="18" rx="0.5"/>
+                      </svg>
+                      <svg class="status-icon" viewBox="0 0 24 24" width="12" height="12" fill="currentColor">
+                        <path d="M12 21a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-6.5a6.5 6.5 0 0 0-4.6 1.9 1 1 0 1 1-1.4-1.4 8.5 8.5 0 0 1 12 0 1 1 0 1 1-1.4 1.4 6.5 6.5 0 0 0-4.6-1.9zm0-5a11.5 11.5 0 0 0-8.1 3.4 1 1 0 0 1-1.4-1.4 13.5 13.5 0 0 1 19 0 1 1 0 0 1-1.4 1.4 11.5 11.5 0 0 0-8.1-3.4z"/>
+                      </svg>
+                      <div class="status-battery">
+                        <div class="battery-body"><div class="battery-level"></div></div>
+                        <div class="battery-cap"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Mobile View Scroll Container -->
+                  <div class="mobile-scroll-container">
+                    
+                    <!-- Mobile Hero Header -->
+                    <div class="mobile-hero-header">
+                      <div class="mobile-header-top">
+                        <div class="mobile-logo">
+                          <svg viewBox="0 0 40 40" fill="none" width="24" height="24" style="vertical-align: middle;">
+                            <path d="M10 8L20 20L10 32" stroke="white" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M25 8L25 32" stroke="#3B82F6" stroke-width="4.5" stroke-linecap="round"/>
+                          </svg>
+                          <div class="mobile-logo-text">
+                            <span class="mob-logo-brand">K2</span>
+                            <span class="mob-logo-sub">CONSTRUCTION GROUP</span>
+                          </div>
+                        </div>
+                        <div class="mobile-header-actions">
+                          <button class="mobile-icon-btn" aria-label="Notifications">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                              <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                            </svg>
+                            <span class="mobile-badge bg-danger">3</span>
+                          </button>
+                          <div class="mobile-avatar-wrapper">
+                            <img src="https://images.unsplash.com/photo-1540569014015-19a7be504e3a?auto=format&fit=facearea&facepad=2.2&w=128&h=128&q=80" alt="John" class="mobile-avatar">
+                            <span class="mobile-avatar-status"></span>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="mobile-greeting-area">
+                        <h2 class="mobile-greeting">Good Morning, John 👋</h2>
+                        <div class="mobile-project-dropdown">
+                          <span class="mobile-project-name">Sunset Waterfront Residence</span>
+                          <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" style="margin-left: 2px;">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                          </svg>
+                          <div class="mobile-project-sub">Hollywood, FL</div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- Stats Widgets Row -->
+                    <div class="mobile-stats-row">
+                      <!-- Weather widget -->
+                      <div class="mob-stat-card weather">
+                        <div class="mob-weather-left">
+                          <svg viewBox="0 0 24 24" width="24" height="24" class="mob-sun-icon">
+                            <circle cx="12" cy="12" r="5" fill="#F59E0B"/>
+                            <path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M5.64 18.36l-1.42 1.42m14.14-14.14l-1.42 1.42" stroke="#FBBF24" stroke-width="2" stroke-linecap="round"/>
+                          </svg>
+                        </div>
+                        <div class="mob-weather-right">
+                          <span class="mob-weather-temp">78°F</span>
+                          <span class="mob-weather-desc">Sunny</span>
+                        </div>
+                      </div>
+                      
+                      <!-- Today's Progress widget -->
+                      <div class="mob-stat-card progress-circle-card">
+                        <div class="mob-progress-gauge">
+                          <svg viewBox="0 0 36 36" class="mob-gauge-svg">
+                            <path class="gauge-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="3" />
+                            <path id="mobile-progress-fill" class="gauge-fill" stroke-dasharray="18, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="var(--primary)" stroke-width="3" stroke-linecap="round" />
+                          </svg>
+                          <span class="mob-progress-text" id="mobile-progress-percentage">18%</span>
+                        </div>
+                        <div class="mob-progress-details">
+                          <span class="mob-stat-title">Today's Progress</span>
+                          <span class="mob-stat-sub" id="mobile-progress-task-count">18 of 74 tasks</span>
+                        </div>
+                      </div>
+                      
+                      <!-- Shift widget -->
+                      <div class="mob-stat-card shift">
+                        <div class="mob-shift-icon">
+                          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M2 20h20M5 17V9a7 7 0 0 1 14 0v8M12 2v2M5 12h14"/>
+                          </svg>
+                        </div>
+                        <div class="mob-shift-details">
+                          <span class="mob-stat-title">Shift A</span>
+                          <span class="mob-stat-sub">8:00 AM - 5:00 PM</span>
+                        </div>
+                        <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2" class="mob-shift-chevron">
+                          <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                      </div>
+                    </div>
+
+                    <!-- Scroll Area for content panels -->
+                    <div class="mobile-sections-container">
+                      
+                      <!-- My Tasks section -->
+                      <div class="mob-section-header">
+                        <h3 class="mob-section-title">MY TASKS</h3>
+                        <a href="#" class="mob-section-link">View All</a>
+                      </div>
+                      
+                      <div class="mob-tasks-list">
+                        <!-- Task 1 -->
+                        <div class="mob-task-card priority-high">
+                          <label class="mob-checkbox-wrapper">
+                            <input type="checkbox" class="mob-task-checkbox" data-task-weight="15" checked>
+                            <span class="mob-checkbox-custom"></span>
+                            <div class="mob-task-content">
+                              <span class="mob-task-name">Install Tie Beam</span>
+                              <span class="mob-task-meta">Level 2 • Room S-201</span>
+                            </div>
+                          </label>
+                          <div class="mob-task-right">
+                            <span class="mob-priority-tag tag-high">High</span>
+                            <span class="mob-task-time">10:30 AM</span>
+                            <div class="mob-task-progress-ring">
+                              <svg viewBox="0 0 36 36" class="mob-ring-svg">
+                                <circle cx="18" cy="18" r="16" fill="none" stroke="rgba(0,0,0,0.05)" stroke-width="3" />
+                                <circle cx="18" cy="18" r="16" fill="none" stroke="#2563EB" stroke-width="3" stroke-dasharray="70, 100" stroke-linecap="round" />
+                              </svg>
+                              <span class="mob-ring-percent">70%</span>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <!-- Task 2 -->
+                        <div class="mob-task-card priority-medium">
+                          <label class="mob-checkbox-wrapper">
+                            <input type="checkbox" class="mob-task-checkbox" data-task-weight="10" checked>
+                            <span class="mob-checkbox-custom"></span>
+                            <div class="mob-task-content">
+                              <span class="mob-task-name">Review Rebar</span>
+                              <span class="mob-task-meta">Level 2 • Room S-201</span>
+                            </div>
+                          </label>
+                          <div class="mob-task-right">
+                            <span class="mob-priority-tag tag-medium">Medium</span>
+                            <span class="mob-task-time">12:00 PM</span>
+                            <div class="mob-task-progress-ring">
+                              <svg viewBox="0 0 36 36" class="mob-ring-svg">
+                                <circle cx="18" cy="18" r="16" fill="none" stroke="rgba(0,0,0,0.05)" stroke-width="3" />
+                                <circle cx="18" cy="18" r="16" fill="none" stroke="#F59E0B" stroke-width="3" stroke-dasharray="40, 100" stroke-linecap="round" />
+                              </svg>
+                              <span class="mob-ring-percent">40%</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Task 3 -->
+                        <div class="mob-task-card priority-low">
+                          <label class="mob-checkbox-wrapper">
+                            <input type="checkbox" class="mob-task-checkbox" data-task-weight="8">
+                            <span class="mob-checkbox-custom"></span>
+                            <div class="mob-task-content">
+                              <span class="mob-task-name">Upload Inspection Photos</span>
+                              <span class="mob-task-meta">Level 1 • Foundation</span>
+                            </div>
+                          </label>
+                          <div class="mob-task-right">
+                            <span class="mob-priority-tag tag-low">Low</span>
+                            <span class="mob-task-time">2:00 PM</span>
+                            <div class="mob-task-progress-ring">
+                              <svg viewBox="0 0 36 36" class="mob-ring-svg">
+                                <circle cx="18" cy="18" r="16" fill="none" stroke="rgba(0,0,0,0.05)" stroke-width="3" />
+                                <circle cx="18" cy="18" r="16" fill="none" stroke="#10B981" stroke-width="3" stroke-dasharray="0, 100" stroke-linecap="round" />
+                              </svg>
+                              <span class="mob-ring-percent">0%</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Task 4 -->
+                        <div class="mob-task-card priority-medium">
+                          <label class="mob-checkbox-wrapper">
+                            <input type="checkbox" class="mob-task-checkbox" data-task-weight="12">
+                            <span class="mob-checkbox-custom"></span>
+                            <div class="mob-task-content">
+                              <span class="mob-task-name">Approve Delivery</span>
+                              <span class="mob-task-meta">Main Entrance</span>
+                            </div>
+                          </label>
+                          <div class="mob-task-right">
+                            <span class="mob-priority-tag tag-medium">Medium</span>
+                            <span class="mob-task-time">1:00 PM</span>
+                            <div class="mob-task-progress-ring">
+                              <svg viewBox="0 0 36 36" class="mob-ring-svg">
+                                <circle cx="18" cy="18" r="16" fill="none" stroke="rgba(0,0,0,0.05)" stroke-width="3" />
+                                <circle cx="18" cy="18" r="16" fill="none" stroke="#F59E0B" stroke-width="3" stroke-dasharray="0, 100" stroke-linecap="round" />
+                              </svg>
+                              <span class="mob-ring-percent">0%</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Up Next banner -->
+                      <div class="mob-up-next-banner">
+                        <div class="up-next-left">
+                          <div class="up-next-icon-wrapper">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                              <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/>
+                              <line x1="3" y1="10" x2="21" y2="10"/>
+                              <circle cx="9" cy="14" r="1.5"/><circle cx="15" cy="14" r="1.5"/>
+                            </svg>
+                          </div>
+                          <div class="up-next-text">
+                            <span class="up-next-eyebrow">UP NEXT</span>
+                            <h4 class="up-next-title">Inspection</h4>
+                            <span class="up-next-location">Foundation • Room S-201</span>
+                          </div>
+                        </div>
+                        <div class="up-next-right">
+                          <span class="up-next-time">
+                            <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 3px; display: inline-block; vertical-align: middle;">
+                              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                            8:30 AM
+                          </span>
+                          <button class="up-next-arrow-btn" aria-label="Go">
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+
+                      <!-- Quick Actions section -->
+                      <h3 class="mob-section-title inline-title">QUICK ACTIONS</h3>
+                      <div class="mob-quick-actions-strip">
+                        <div class="mob-action-btn-card" id="mob-action-photo">
+                          <div class="mob-action-icon photo"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+                          <span class="mob-action-label">Capture Photo</span>
+                        </div>
+                        <div class="mob-action-btn-card" id="mob-action-voice">
+                          <div class="mob-action-icon voice"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v1a7 7 0 0 1-14 0v-1M12 19v4M8 23h8"/></svg></div>
+                          <span class="mob-action-label">Voice Report</span>
+                        </div>
+                        <div class="mob-action-btn-card" id="mob-action-drawing">
+                          <div class="mob-action-icon drawing"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+                          <span class="mob-action-label">Open Drawing</span>
+                        </div>
+                        <div class="mob-action-btn-card" id="mob-action-issue">
+                          <div class="mob-action-icon issue"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+                          <span class="mob-action-label">Log Issue</span>
+                        </div>
+                        <div class="mob-action-btn-card" id="mob-action-scan">
+                          <div class="mob-action-icon scan"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="6" height="6" rx="1"/><rect x="15" y="3" width="6" height="6" rx="1"/><rect x="3" y="15" width="6" height="6" rx="1"/><path d="M16 16h2v2h-2zm2 2h2v2h-2zm-2 2h2v-2h2v4h-4z"/></svg></div>
+                          <span class="mob-action-label">Scan Material</span>
+                        </div>
+                      </div>
+
+                      <!-- Today's Schedule section -->
+                      <div class="mob-section-header">
+                        <h3 class="mob-section-title">TODAY'S SCHEDULE</h3>
+                        <a href="#" class="mob-section-link">View All</a>
+                      </div>
+
+                      <div class="mob-schedule-container">
+                        <!-- Horizontal Timeline Cards -->
+                        <div class="mob-schedule-cards">
+                          <div class="mob-schedule-card">
+                            <div class="mob-sched-icon calendar"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+                            <div class="mob-sched-details">
+                              <span class="mob-sched-time">8:30 AM</span>
+                              <span class="mob-sched-title">Inspection</span>
+                              <span class="mob-sched-sub">Foundation</span>
+                            </div>
+                          </div>
+
+                          <div class="mob-schedule-card">
+                            <div class="mob-sched-icon delivery"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+                            <div class="mob-sched-details">
+                              <span class="mob-sched-time">1:00 PM</span>
+                              <span class="mob-sched-title">Delivery</span>
+                              <span class="mob-sched-sub">Cabinets</span>
+                            </div>
+                          </div>
+
+                          <div class="mob-schedule-card">
+                            <div class="mob-sched-icon walkthrough"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+                            <div class="mob-sched-details">
+                              <span class="mob-sched-time">3:00 PM</span>
+                              <span class="mob-sched-title">Walkthrough</span>
+                              <span class="mob-sched-sub">Client</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Timeline Bar -->
+                        <div class="mob-schedule-timeline-bar">
+                          <span class="timeline-dot dot-1 active"></span>
+                          <span class="timeline-dot dot-2"></span>
+                          <span class="timeline-dot dot-3"></span>
+                        </div>
+                      </div>
+
+                      <!-- Updates section -->
+                      <div class="mob-section-header">
+                        <h3 class="mob-section-title">UPDATES</h3>
+                        <a href="#" class="mob-section-link">View All</a>
+                      </div>
+
+                      <div class="mob-updates-strip">
+                        <div class="mob-update-card">
+                          <div class="update-icon doc"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+                          <div class="update-text">
+                            <span class="update-title">New Drawing</span>
+                            <span class="update-val">Rev 06</span>
+                            <span class="update-time">Today</span>
+                          </div>
+                        </div>
+                        <div class="mob-update-card">
+                          <div class="update-icon delivery"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+                          <div class="update-text">
+                            <span class="update-title">Delivery</span>
+                            <span class="update-val" style="color: var(--warning);">in 35 min</span>
+                            <span class="update-time">1:00 PM</span>
+                          </div>
+                        </div>
+                        <div class="mob-update-card">
+                          <div class="update-icon inspect"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg></div>
+                          <div class="update-text">
+                            <span class="update-title">Inspection</span>
+                            <span class="update-val" style="color: var(--success);">Due in 20 min</span>
+                            <span class="update-time">8:30 AM</span>
+                          </div>
+                        </div>
+                        <div class="mob-update-card">
+                          <div class="update-icon rfi"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+                          <div class="update-text">
+                            <span class="update-title">RFI Response</span>
+                            <span class="update-val">Received</span>
+                            <span class="update-time">Today</span>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <!-- Mobile Bottom Nav Tab Bar -->
+                  <div class="mobile-tab-bar">
+                    <button class="mobile-tab-item active">
+                      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                      </svg>
+                      <span class="mob-tab-label">Home</span>
+                    </button>
+                    <button class="mobile-tab-item" id="mob-tab-tasks-trigger">
+                      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
+                      </svg>
+                      <span class="mob-tab-label">Tasks</span>
+                    </button>
+                    <button class="mobile-tab-item" id="mob-tab-drawings-trigger">
+                      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
+                      </svg>
+                      <span class="mob-tab-label">Drawings</span>
+                    </button>
+                    <button class="mobile-tab-item">
+                      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+                      </svg>
+                      <span class="mob-tab-label">Profile</span>
+                    </button>
+                    
+                    <!-- iPhone Home Indicator Line -->
+                    <div class="iphone-home-indicator"></div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <!-- Sandbox Control Panel Side (Right) -->
+            <div class="sandbox-control-panel">
+              <div class="widget-panel" style="height: 100%; display: flex; flex-direction: column;">
+                <div class="panel-header border-bottom">
+                  <div class="panel-title-with-icon">
+                    <svg class="text-primary pulse-blue" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+                      <line x1="12" y1="18" x2="12.01" y2="18" />
+                    </svg>
+                    <h3 class="panel-title">K2 Construction Mobile Simulator</h3>
+                  </div>
+                </div>
+                <div class="panel-body" style="overflow-y: auto; flex-grow: 1; display: flex; flex-direction: column; gap: 16px;">
+                  
+                  <div class="control-section">
+                    <h4 class="control-sec-title">Simulator Status</h4>
+                    <p class="text-xs text-muted" style="line-height: 1.5;">
+                      This interactive simulation presents the high-fidelity mobile application client dashboard delivered by GS3 Solutions. Tap elements on the phone screen or adjust sliders to see real-time updates.
+                    </p>
+                  </div>
+
+                  <div class="control-section">
+                    <h4 class="control-sec-title">Interactive Controls</h4>
+                    
+                    <!-- Manual progress slider -->
+                    <div class="control-group" style="margin-top: 12px;">
+                      <label class="control-label text-xs font-semibold" for="sim-progress-range">Manual Progress Override</label>
+                      <div style="display: flex; align-items: center; gap: 10px; margin-top: 6px;">
+                        <input type="range" id="sim-progress-range" min="0" max="100" value="18" style="flex-grow: 1; cursor: pointer;">
+                        <span class="badge badge-accent" id="sim-progress-display" style="padding: 4px 8px;">18%</span>
+                      </div>
+                      <span class="text-muted" style="font-size: 10px; margin-top: 4px; display: block;">Adjusting the slider dynamically rotates the phone's circular progress gauge.</span>
+                    </div>
+
+                    <!-- Theme toggle button -->
+                    <div class="control-group" style="margin-top: 16px;">
+                      <span class="control-label text-xs font-semibold" style="display: block; margin-bottom: 6px;">Device Theme Mode</span>
+                      <div style="display: flex; gap: 8px;">
+                        <button class="action-btn-secondary active" id="btn-theme-dark" style="flex: 1; font-size: 11px;">Dark Mode</button>
+                        <button class="action-btn-secondary" id="btn-theme-light" style="flex: 1; font-size: 11px;">Light Mode</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="control-section">
+                    <h4 class="control-sec-title">Interactive Sandbox Functions</h4>
+                    
+                    <ul class="sandbox-features-list" style="list-style-type: none; padding-left: 0;">
+                      <li style="margin-bottom: 8px; font-size: 11px; line-height: 1.4;">
+                        🔹 <strong>Checkbox Progress Linking:</strong> Checking or unchecking tasks inside the <em>My Tasks</em> mobile list will dynamically alter the <strong>Today's Progress</strong> radial meter on the phone screen in real-time.
+                      </li>
+                      <li style="margin-bottom: 8px; font-size: 11px; line-height: 1.4;">
+                        🔹 <strong>RFI Speech Dictation:</strong> Tapping the <strong>Voice Report</strong> button under <em>Quick Actions</em> triggers an interactive speech-to-text recording window inside the simulator.
+                      </li>
+                      <li style="margin-bottom: 8px; font-size: 11px; line-height: 1.4;">
+                        🔹 <strong>Deep Navigation Redirect:</strong> Tapping <strong>Open Drawing</strong> or the bottom <strong>Drawings</strong> tab redirects the entire dashboard to the active blueprint viewer.
+                      </li>
+                    </ul>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
