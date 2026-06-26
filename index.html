@@ -1,0 +1,2038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>K2 Construction Group - Project Management Dashboard</title>
+  <!-- Google Fonts: Inter and Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="app-layout">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo-container">
+          <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 8L22 20L12 32" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M28 8L28 32" stroke="#3B82F6" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+          <div class="logo-text">
+            <span class="brand-k2">K2</span>
+            <span class="brand-sub">CONSTRUCTION<br>GROUP</span>
+          </div>
+        </div>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-tab="dashboard" id="nav-dashboard">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="9" rx="1" />
+            <rect x="14" y="3" width="7" height="5" rx="1" />
+            <rect x="14" y="12" width="7" height="9" rx="1" />
+            <rect x="3" y="16" width="7" height="5" rx="1" />
+          </svg>
+          <span>Dashboard</span>
+        </button>
+        
+        <button class="nav-item locked-nav" data-tab="projects" id="nav-projects">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+          </svg>
+          <span>Projects</span>
+          <span class="nav-badge-locked">Phase 2</span>
+        </button>
+        
+        <button class="nav-item locked-nav" data-tab="schedule" id="nav-schedule">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+            <line x1="16" y1="2" x2="16" y2="6" />
+            <line x1="8" y1="2" x2="8" y2="6" />
+            <line x1="3" y1="10" x2="21" y2="10" />
+          </svg>
+          <span>Schedule</span>
+          <span class="nav-badge-locked">Phase 2</span>
+        </button>
+        
+        <button class="nav-item" data-tab="tasks" id="nav-tasks">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 11l3 3L22 4" />
+            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+          </svg>
+          <span>Tasks</span>
+        </button>
+        
+        <button class="nav-item" data-tab="documents" id="nav-documents">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+            <polyline points="14 2 14 8 20 8" />
+            <line x1="16" y1="13" x2="8" y2="13" />
+            <line x1="16" y1="17" x2="8" y2="17" />
+            <polyline points="10 9 9 9 8 9" />
+          </svg>
+          <span>Documents</span>
+        </button>
+        
+        <button class="nav-item locked-nav" data-tab="materials" id="nav-materials">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+            <line x1="12" y1="22.08" x2="12" y2="12" />
+          </svg>
+          <span>Materials</span>
+          <span class="nav-badge-locked">Phase 2</span>
+        </button>
+        
+        <button class="nav-item locked-nav" data-tab="contracts" id="nav-contracts">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+            <polyline points="14 2 14 8 20 8" />
+            <path d="M12 18h.01" />
+            <path d="M8 14h8" />
+          </svg>
+          <span>Contracts</span>
+          <span class="nav-badge-locked">Phase 2</span>
+        </button>
+
+        
+        <!-- GS3 Pitch Hub section divider -->
+        <div class="sidebar-divider"></div>
+        <div class="sidebar-sec-title">GS3 Solutions Pitch</div>
+        
+
+        <button class="nav-item" data-tab="gs3-portfolio" id="nav-gs3-portfolio">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+          </svg>
+          <span>Portfolio &amp; Reviews</span>
+        </button>
+        
+        <button class="nav-item" data-tab="gs3-sop" id="nav-gs3-sop">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+          </svg>
+          <span>Strategic Roadmap</span>
+        </button>
+      </nav>
+      
+      <!-- Weather Widget -->
+      <div class="weather-widget">
+        <div class="weather-header">
+          <span class="weather-location">Hollywood, FL</span>
+        </div>
+        <div class="weather-body">
+          <div class="weather-left">
+            <svg class="weather-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="10" r="4" fill="#FBBF24" stroke="#FBBF24" />
+              <path d="M12 2v2M12 16v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M16 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+              <path d="M22 17a3 3 0 0 1-3 3H7a5 5 0 0 1-1-9.9 5 5 0 0 1 9.7-1A4 4 0 0 1 22 13a3.89 3.89 0 0 1 0 4z" fill="#E2E8F0" stroke="#CBD5E1" />
+            </svg>
+            <span class="weather-temp">78°F</span>
+          </div>
+          <div class="weather-right">
+            <div class="weather-desc">Partly Cloudy</div>
+            <div class="weather-range">H: 81° L: 67°</div>
+            <div class="weather-wind">Wind 12 mph</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+    
+    <!-- Main Content Container -->
+    <main class="main-content">
+      
+      <!-- Top Navigation / Search Bar -->
+      <header class="top-bar">
+        <div class="top-bar-left">
+          <button class="menu-toggle" aria-label="Toggle menu">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
+          </button>
+          
+          <div class="project-selector">
+            <span class="project-prefix">Projects</span>
+            <span class="project-separator">/</span>
+            <div class="project-dropdown">
+              <button class="project-dropdown-btn">
+                <span id="selected-project-name">1234 - Sunset Waterfront Residence</span>
+                <svg class="dropdown-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </button>
+              <div class="dropdown-menu">
+                <a href="#" class="dropdown-item active">1234 - Sunset Waterfront Residence</a>
+                <a href="#" class="dropdown-item">5678 - Grand Skyline Tower</a>
+                <a href="#" class="dropdown-item">9012 - Emerald Park Villas</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="top-bar-middle">
+          <div class="search-container">
+            <div class="search-input-wrapper">
+              <svg class="ai-spark-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m11.314 11.314l.707.707M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10z" />
+              </svg>
+              <input type="text" id="global-search" placeholder="Ask AI anything about this project..." autocomplete="off">
+              <button class="search-clear-btn" id="search-clear" style="display: none;">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+            </div>
+            <div class="search-results-popup" id="search-suggestions">
+              <!-- Dynamically populated suggestions -->
+            </div>
+          </div>
+        </div>
+        
+        <div class="top-bar-right">
+          <button class="icon-btn" aria-label="Notifications">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+              <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+            </svg>
+            <span class="badge badge-danger">8</span>
+          </button>
+          
+          <button class="icon-btn" aria-label="Messages">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+            </svg>
+            <span class="badge badge-danger">3</span>
+          </button>
+          
+          <button class="icon-btn" aria-label="Calendar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+              <line x1="16" y1="2" x2="16" y2="6" />
+              <line x1="8" y1="2" x2="8" y2="6" />
+              <line x1="3" y1="10" x2="21" y2="10" />
+            </svg>
+          </button>
+          
+          <div class="user-profile">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="John Carter" class="avatar">
+            <div class="user-info">
+              <span class="user-name">John Carter</span>
+              <span class="user-role">Project Manager</span>
+            </div>
+          </div>
+        </div>
+      </header>
+      
+      <!-- Content Views -->
+      <div class="view-viewport">
+        
+        <!-- ==================== DASHBOARD VIEW ==================== -->
+        <div class="view-tab active" id="tab-content-dashboard">
+          
+          <!-- KPI Summary Cards Grid -->
+          <section class="kpi-grid">
+            
+            <div class="kpi-card hover-lift">
+              <div class="kpi-card-header">
+                <span class="kpi-title">Project Health</span>
+                <span class="kpi-icon-wrapper text-success">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                  </svg>
+                </span>
+              </div>
+              <div class="kpi-card-value text-success">On Track</div>
+              <div class="kpi-card-sub">
+                <span class="indicator-dot bg-success"></span> Updated 10 min ago
+              </div>
+            </div>
+            
+            <div class="kpi-card hover-lift">
+              <div class="kpi-card-header">
+                <span class="kpi-title">Completion</span>
+                <span class="kpi-icon-wrapper text-primary">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12 6 12 12 16 14" />
+                  </svg>
+                </span>
+              </div>
+              <div class="kpi-radial-container">
+                <div class="radial-progress-wrapper">
+                  <svg class="radial-progress-svg" viewBox="0 0 36 36">
+                    <path class="radial-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                    <path class="radial-bar" stroke-dasharray="68, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                  </svg>
+                  <div class="radial-value">68%</div>
+                </div>
+                <div class="radial-details">
+                  <span class="kpi-card-sub">Last updated today</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="kpi-card hover-lift">
+              <div class="kpi-card-header">
+                <span class="kpi-title">Budget</span>
+                <span class="kpi-icon-wrapper text-info">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="4" width="20" height="16" rx="2" ry="2" />
+                    <line x1="12" y1="4" x2="12" y2="20" />
+                  </svg>
+                </span>
+              </div>
+              <div class="kpi-card-value">$2.12M</div>
+              <div class="kpi-progress-bar-container">
+                <div class="progress-bar-label">
+                  <span>of $2.60M</span>
+                  <span class="text-success font-medium">81%</span>
+                </div>
+                <div class="progress-track">
+                  <div class="progress-fill bg-success" style="width: 81%"></div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="kpi-card hover-lift">
+              <div class="kpi-card-header">
+                <span class="kpi-title">Today's Tasks</span>
+                <span class="kpi-icon-wrapper text-warning">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <polyline points="14 2 14 8 20 8" />
+                    <line x1="16" y1="13" x2="8" y2="13" />
+                    <line x1="16" y1="17" x2="8" y2="17" />
+                    <polyline points="10 9 9 9 8 9" />
+                  </svg>
+                </span>
+              </div>
+              <div class="kpi-card-value">24</div>
+              <div class="kpi-card-sub text-danger font-semibold">
+                6 Overdue
+              </div>
+            </div>
+            
+            <div class="kpi-card hover-lift">
+              <div class="kpi-card-header">
+                <span class="kpi-title">Pending RFIs</span>
+                <span class="kpi-icon-wrapper text-purple">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                    <line x1="12" y1="17" x2="12.01" y2="17" />
+                  </svg>
+                </span>
+              </div>
+              <div class="kpi-card-value">5</div>
+              <div class="kpi-card-sub text-warning font-semibold">
+                3 Awaiting reply
+              </div>
+            </div>
+            
+            <div class="kpi-card hover-lift">
+              <div class="kpi-card-header">
+                <span class="kpi-title">AI Risk Score</span>
+                <span class="kpi-icon-wrapper text-danger">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2" />
+                    <line x1="12" y1="8" x2="12" y2="12" />
+                    <line x1="12" y1="16" x2="12.01" y2="16" />
+                  </svg>
+                </span>
+              </div>
+              <div class="kpi-card-value text-warning">Medium</div>
+              <div class="kpi-card-sub">
+                Score <span class="font-semibold text-dark">62/100</span>
+              </div>
+            </div>
+          </section>
+          
+          <!-- Middle Widget Section: Gantt Chart and AI Intelligence -->
+          <section class="dashboard-mid-grid">
+            
+            <!-- Project Schedule Widget -->
+            <div class="widget-panel col-span-2">
+              <div class="panel-header">
+                <h2 class="panel-title">Project Schedule</h2>
+                <div class="panel-actions">
+                  <div class="select-wrapper">
+                    <select id="schedule-view-mode">
+                      <option value="week" selected>View: Week</option>
+                      <option value="month">View: Month</option>
+                      <option value="quarter">View: Quarter</option>
+                    </select>
+                  </div>
+                  <button class="action-btn-secondary">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                      <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
+                    </svg>
+                    <span>Filters</span>
+                  </button>
+                  <button class="action-btn-icon" aria-label="Fullscreen">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="panel-body no-padding">
+                <div class="gantt-chart-container">
+                  <!-- Gantt Chart Header Grid -->
+                  <div class="gantt-grid-header">
+                    <div class="gantt-col-task">Task / Phase</div>
+                    <div class="gantt-col-timeline">
+                      <div class="gantt-month-label month-june">June 2025</div>
+                      <div class="gantt-month-label month-july">July 2025</div>
+                      <div class="gantt-days-row">
+                        <!-- Render days 25-31 June, 1-21 July -->
+                        <span>S<br>25</span><span>M<br>26</span><span>T<br>27</span><span>W<br>28</span><span>T<br>29</span><span>F<br>30</span><span>S<br>31</span>
+                        <span>S<br>1</span><span>M<br>2</span><span>T<br>3</span><span>W<br>4</span><span>T<br>5</span><span>F<br>6</span><span>S<br>7</span>
+                        <span>S<br>8</span><span>M<br>9</span><span>T<br>10</span><span class="current-day-label">W<br>11</span><span>T<br>12</span><span>F<br>13</span><span>S<br>14</span>
+                        <span>S<br>15</span><span>M<br>16</span><span>T<br>17</span><span>W<br>18</span><span>T<br>19</span><span>F<br>20</span><span>S<br>21</span>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Gantt Chart Rows -->
+                  <div class="gantt-grid-body">
+                    
+                    <!-- Preconstruction Row -->
+                    <div class="gantt-row">
+                      <div class="gantt-cell-task">
+                        <span class="task-expander">
+                          <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </span>
+                        <span class="task-dot bg-success"></span>
+                        <span class="task-name">Preconstruction</span>
+                      </div>
+                      <div class="gantt-cell-timeline">
+                        <div class="gantt-bar-wrapper" style="grid-column: 1 / 13;">
+                          <div class="gantt-bar bg-success-light border-success">
+                            <span class="gantt-bar-text">Design & Planning</span>
+                            <span class="gantt-bar-date-hover">May 26 - Jun 6</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- Foundation Row -->
+                    <div class="gantt-row">
+                      <div class="gantt-cell-task">
+                        <span class="task-expander">
+                          <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </span>
+                        <span class="task-dot bg-success"></span>
+                        <span class="task-name">Foundation</span>
+                      </div>
+                      <div class="gantt-cell-timeline">
+                        <div class="gantt-bar-wrapper" style="grid-column: 10 / 20;">
+                          <div class="gantt-bar bg-success-light border-success">
+                            <span class="gantt-bar-text">Foundation</span>
+                            <span class="gantt-bar-date-hover">Jun 3 - Jun 12</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- Framing Row -->
+                    <div class="gantt-row">
+                      <div class="gantt-cell-task">
+                        <span class="task-expander">
+                          <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </span>
+                        <span class="task-dot bg-primary"></span>
+                        <span class="task-name">Framing</span>
+                      </div>
+                      <div class="gantt-cell-timeline">
+                        <div class="gantt-bar-wrapper" style="grid-column: 16 / 27;">
+                          <div class="gantt-bar bg-primary-light border-primary">
+                            <span class="gantt-bar-text">Framing</span>
+                            <span class="gantt-bar-date-hover">Jun 9 - Jun 20</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- MEP Rough-In Row -->
+                    <div class="gantt-row">
+                      <div class="gantt-cell-task">
+                        <span class="task-expander collapsed">
+                          <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                        </span>
+                        <span class="task-dot bg-warning"></span>
+                        <span class="task-name">MEP Rough-In</span>
+                      </div>
+                      <div class="gantt-cell-timeline">
+                        <div class="gantt-bar-wrapper" style="grid-column: 23 / 34;">
+                          <div class="gantt-bar bg-warning-light border-warning">
+                            <span class="gantt-bar-text">MEP Rough-In</span>
+                            <span class="gantt-bar-date-hover">Jun 16 - Jul 4</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- Inspections Row -->
+                    <div class="gantt-row">
+                      <div class="gantt-cell-task">
+                        <span class="task-expander collapsed">
+                          <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                        </span>
+                        <span class="task-dot bg-purple"></span>
+                        <span class="task-name">Inspections</span>
+                      </div>
+                      <div class="gantt-cell-timeline">
+                        <div class="gantt-bar-wrapper" style="grid-column: 30 / 37;">
+                          <div class="gantt-bar bg-purple-light border-purple">
+                            <span class="gantt-bar-text">Inspections</span>
+                            <span class="gantt-bar-date-hover">Jun 23 - Jul 11</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- Finishes Row -->
+                    <div class="gantt-row">
+                      <div class="gantt-cell-task">
+                        <span class="task-expander collapsed">
+                          <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                        </span>
+                        <span class="task-dot bg-info"></span>
+                        <span class="task-name">Finishes</span>
+                      </div>
+                      <div class="gantt-cell-timeline">
+                        <div class="gantt-bar-wrapper" style="grid-column: 35 / 42;">
+                          <div class="gantt-bar bg-info-light border-info">
+                            <span class="gantt-bar-text">Interior Finishes</span>
+                            <span class="gantt-bar-date-hover">Jul 12 - Jul 25</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- Closeout Row -->
+                    <div class="gantt-row">
+                      <div class="gantt-cell-task">
+                        <span class="task-expander collapsed">
+                          <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                        </span>
+                        <span class="task-dot bg-grey"></span>
+                        <span class="task-name">Closeout</span>
+                      </div>
+                      <div class="gantt-cell-timeline">
+                        <div class="gantt-milestone-wrapper" style="grid-column: 42;">
+                          <div class="gantt-milestone" title="Final Walkthrough: Jul 26 - Jul 30">
+                            <svg viewBox="0 0 24 24" class="milestone-diamond" fill="currentColor">
+                              <polygon points="12 2 22 12 12 22 2 12" />
+                            </svg>
+                            <span class="milestone-label">Final Walkthrough<br>Jul 26 - Jul 30</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                  </div>
+                  <!-- Vertical current day indicator line (matches July 11 / W11) -->
+                  <div class="gantt-current-day-line" style="left: calc((100% - 220px) / 28 * 16.5 + 220px);"></div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- AI Project Intelligence Widget -->
+            <div class="widget-panel col-span-1 ai-intel-panel">
+              <div class="panel-header">
+                <div class="ai-header-title">
+                  <h2 class="panel-title">AI Project Intelligence</h2>
+                  <span class="badge badge-accent uppercase tracking-wider text-xs">Beta</span>
+                </div>
+                <svg class="panel-header-spark" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m11.314 11.314l.707.707M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10z" />
+                </svg>
+              </div>
+              <div class="panel-body flex-column gap-md">
+                
+                <div class="ai-intel-card border-left-danger bg-danger-lightest">
+                  <div class="ai-card-top">
+                    <svg class="ai-card-icon text-danger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2" />
+                      <line x1="12" y1="8" x2="12" y2="12" />
+                      <line x1="12" y1="16" x2="12.01" y2="16" />
+                    </svg>
+                    <div class="ai-card-header-info">
+                      <h4 class="ai-card-headline">Plumbing delayed by 2 days</h4>
+                      <p class="ai-card-desc">Inspection failed on 1st floor rough-in.</p>
+                    </div>
+                  </div>
+                  <a href="#" class="ai-card-action text-danger">Review</a>
+                </div>
+                
+                <div class="ai-intel-card border-left-danger bg-danger-lightest">
+                  <div class="ai-card-top">
+                    <svg class="ai-card-icon text-danger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2" />
+                      <line x1="12" y1="8" x2="12" y2="12" />
+                      <line x1="12" y1="16" x2="12.01" y2="16" />
+                    </svg>
+                    <div class="ai-card-header-info">
+                      <h4 class="ai-card-headline">Electrical clashes with HVAC</h4>
+                      <p class="ai-card-desc">Conflicting in 2 locations on Level 2.</p>
+                    </div>
+                  </div>
+                  <a href="#" class="ai-card-action text-danger">Open Clash Report</a>
+                </div>
+                
+                <div class="ai-intel-card border-left-primary bg-primary-lightest">
+                  <div class="ai-card-top">
+                    <svg class="ai-card-icon text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                    </svg>
+                    <div class="ai-card-header-info">
+                      <h4 class="ai-card-headline">Material delivery expected tomorrow</h4>
+                      <p class="ai-card-desc">Kitchen cabinets arriving at 9:00 AM.</p>
+                    </div>
+                  </div>
+                  <a href="#" class="ai-card-action text-primary">View Delivery</a>
+                </div>
+                
+                <div class="ai-intel-card border-left-success bg-success-lightest">
+                  <div class="ai-card-top">
+                    <svg class="ai-card-icon text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <line x1="12" y1="1" x2="12" y2="23" />
+                      <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                    </svg>
+                    <div class="ai-card-header-info">
+                      <h4 class="ai-card-headline">Budget trending 4% above estimate</h4>
+                      <p class="ai-card-desc">Plumbing & fixtures over budget.</p>
+                    </div>
+                  </div>
+                  <a href="#" class="ai-card-action text-success">View Budget</a>
+                </div>
+                
+                <div class="ai-intel-card border-left-warning bg-warning-lightest">
+                  <div class="ai-card-top">
+                    <svg class="ai-card-icon text-warning" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="10" />
+                      <line x1="12" y1="8" x2="12" y2="12" />
+                      <line x1="12" y1="16" x2="12.01" y2="16" />
+                    </svg>
+                    <div class="ai-card-header-info">
+                      <h4 class="ai-card-headline">Client approval required</h4>
+                      <p class="ai-card-desc">Tile selection pending approval.</p>
+                    </div>
+                  </div>
+                  <a href="#" class="ai-card-action text-warning">Send Reminder</a>
+                </div>
+                
+              </div>
+            </div>
+            
+          </section>
+          
+          <!-- Bottom Widget Section: Tasks, RFIs, Issues, Activity -->
+          <section class="dashboard-bottom-grid">
+            
+            <!-- Today's Tasks -->
+            <div class="widget-panel">
+              <div class="panel-header">
+                <h2 class="panel-title">Today's Tasks</h2>
+                <a href="#" class="view-all-link">View all</a>
+              </div>
+              <div class="panel-body">
+                <ul class="task-checklist" id="checklist-container">
+                  <li class="checklist-item" data-id="1">
+                    <label class="checkbox-wrapper">
+                      <input type="checkbox" class="task-checkbox">
+                      <span class="custom-checkbox"></span>
+                      <span class="checklist-text">Install Drywall - Level 2</span>
+                    </label>
+                    <div class="checklist-meta">
+                      <span class="meta-time">8:00 AM</span>
+                      <span class="priority-badge priority-high">High</span>
+                    </div>
+                  </li>
+                  <li class="checklist-item" data-id="2">
+                    <label class="checkbox-wrapper">
+                      <input type="checkbox" class="task-checkbox">
+                      <span class="custom-checkbox"></span>
+                      <span class="checklist-text">HVAC Inspection</span>
+                    </label>
+                    <div class="checklist-meta">
+                      <span class="meta-time">10:00 AM</span>
+                      <span class="priority-badge priority-medium">Medium</span>
+                    </div>
+                  </li>
+                  <li class="checklist-item" data-id="3">
+                    <label class="checkbox-wrapper">
+                      <input type="checkbox" class="task-checkbox">
+                      <span class="custom-checkbox"></span>
+                      <span class="checklist-text">Paint - Bedroom 3</span>
+                    </label>
+                    <div class="checklist-meta">
+                      <span class="meta-time">1:00 PM</span>
+                      <span class="priority-badge priority-medium">Medium</span>
+                    </div>
+                  </li>
+                  <li class="checklist-item" data-id="4">
+                    <label class="checkbox-wrapper">
+                      <input type="checkbox" class="task-checkbox">
+                      <span class="custom-checkbox"></span>
+                      <span class="checklist-text">Electrical Testing</span>
+                    </label>
+                    <div class="checklist-meta">
+                      <span class="meta-time">3:00 PM</span>
+                      <span class="priority-badge priority-low">Low</span>
+                    </div>
+                  </li>
+                  <li class="checklist-item" data-id="5">
+                    <label class="checkbox-wrapper">
+                      <input type="checkbox" class="task-checkbox">
+                      <span class="custom-checkbox"></span>
+                      <span class="checklist-text">Site Cleanup</span>
+                    </label>
+                    <div class="checklist-meta">
+                      <span class="meta-time">4:00 PM</span>
+                      <span class="priority-badge priority-low">Low</span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            
+            <!-- Pending RFIs -->
+            <div class="widget-panel">
+              <div class="panel-header">
+                <h2 class="panel-title">Pending RFIs</h2>
+                <a href="#" class="view-all-link">View all</a>
+              </div>
+              <div class="panel-body">
+                <div class="item-list">
+                  
+                  <div class="rfi-item cursor-pointer" data-rfi="RFI-1021">
+                    <div class="rfi-avatar bg-blue-avatar">SF</div>
+                    <div class="rfi-content">
+                      <div class="rfi-header-row">
+                        <span class="rfi-id">RFI-1021</span>
+                        <span class="rfi-time">2h ago</span>
+                      </div>
+                      <h4 class="rfi-title">Structural Beam Detail</h4>
+                      <p class="rfi-sender">From: Structural Eng.</p>
+                    </div>
+                  </div>
+                  
+                  <div class="rfi-item cursor-pointer" data-rfi="RFI-1022">
+                    <div class="rfi-avatar bg-purple-avatar">ID</div>
+                    <div class="rfi-content">
+                      <div class="rfi-header-row">
+                        <span class="rfi-id">RFI-1022</span>
+                        <span class="rfi-time">1d ago</span>
+                      </div>
+                      <h4 class="rfi-title">Ceiling Height Clarification</h4>
+                      <p class="rfi-sender">From: Interior Designer</p>
+                    </div>
+                  </div>
+                  
+                  <div class="rfi-item cursor-pointer" data-rfi="RFI-1023">
+                    <div class="rfi-avatar bg-green-avatar">AP</div>
+                    <div class="rfi-content">
+                      <div class="rfi-header-row">
+                        <span class="rfi-id">RFI-1023</span>
+                        <span class="rfi-time">2d ago</span>
+                      </div>
+                      <h4 class="rfi-title">Plumbing Clearance</h4>
+                      <p class="rfi-sender">From: ABC Plumbing</p>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+            
+            <!-- Open Issues -->
+            <div class="widget-panel">
+              <div class="panel-header">
+                <h2 class="panel-title">Open Issues</h2>
+                <a href="#" class="view-all-link">View all</a>
+              </div>
+              <div class="panel-body">
+                <div class="item-list">
+                  
+                  <div class="issue-item">
+                    <div class="issue-main">
+                      <svg class="issue-icon text-danger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="12" y1="8" x2="12" y2="12" />
+                        <line x1="12" y1="16" x2="12.01" y2="16" />
+                      </svg>
+                      <div class="issue-info">
+                        <h4 class="issue-title">Missing Material</h4>
+                        <p class="issue-desc">Drywall sheets not delivered</p>
+                      </div>
+                    </div>
+                    <span class="priority-badge priority-high">High</span>
+                  </div>
+                  
+                  <div class="issue-item">
+                    <div class="issue-main">
+                      <svg class="issue-icon text-warning" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="12" y1="8" x2="12" y2="12" />
+                        <line x1="12" y1="16" x2="12.01" y2="16" />
+                      </svg>
+                      <div class="issue-info">
+                        <h4 class="issue-title">Site Safety</h4>
+                        <p class="issue-desc">Exposed wiring at Level 1</p>
+                      </div>
+                    </div>
+                    <span class="priority-badge priority-medium">Medium</span>
+                  </div>
+                  
+                  <div class="issue-item">
+                    <div class="issue-main">
+                      <svg class="issue-icon text-warning" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="12" y1="8" x2="12" y2="12" />
+                        <line x1="12" y1="16" x2="12.01" y2="16" />
+                      </svg>
+                      <div class="issue-info">
+                        <h4 class="issue-title">Design Conflict</h4>
+                        <p class="issue-desc">Window size mismatch</p>
+                      </div>
+                    </div>
+                    <span class="priority-badge priority-medium">Medium</span>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+            
+            <!-- Contractor Activity -->
+            <div class="widget-panel">
+              <div class="panel-header">
+                <h2 class="panel-title">Contractor Activity</h2>
+                <a href="#" class="view-all-link">View all</a>
+              </div>
+              <div class="panel-body">
+                <div class="activity-feed">
+                  
+                  <div class="activity-item">
+                    <div class="activity-bullet border-blue"></div>
+                    <div class="activity-content">
+                      <p class="activity-text"><strong>ABC Plumbing</strong> uploaded 12 photos</p>
+                      <span class="activity-time">10 min ago</span>
+                    </div>
+                  </div>
+                  
+                  <div class="activity-item">
+                    <div class="activity-bullet border-green"></div>
+                    <div class="activity-content">
+                      <p class="activity-text"><strong>Sunset Electric</strong> completed inspection</p>
+                      <span class="activity-time">25 min ago</span>
+                    </div>
+                  </div>
+                  
+                  <div class="activity-item">
+                    <div class="activity-bullet border-grey"></div>
+                    <div class="activity-content">
+                      <p class="activity-text"><strong>Concrete Supply Co.</strong> confirmed delivery</p>
+                      <span class="activity-time">1 hr ago</span>
+                    </div>
+                  </div>
+                  
+                  <div class="activity-item">
+                    <div class="activity-bullet border-grey"></div>
+                    <div class="activity-content">
+                      <p class="activity-text"><strong>Roofing Solutions</strong> submitted invoice</p>
+                      <span class="activity-time">2 hrs ago</span>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+            
+          </section>
+          
+        </div>
+        
+        <!-- ==================== DOCUMENTS VIEW ==================== -->
+        <div class="view-tab" id="tab-content-documents">
+          
+          <!-- Query Header Bar -->
+          <section class="docs-query-header">
+            <div class="query-left">
+              <span class="query-question" id="query-display-text">Where is the tie beam?</span>
+            </div>
+            <div class="query-right">
+              <button class="action-btn-primary" id="ask-ai-button">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2a10 10 0 0 1 7.54 16.59c-.24.29-.32.68-.22 1.05l.5 1.83a1 1 0 0 1-1.37 1.18l-2.22-1.1a1 1 0 0 0-.74-.07A9.95 9.95 0 0 1 12 22a10 10 0 0 1 0-20z" />
+                </svg>
+                <span>Ask AI</span>
+              </button>
+              
+              <button class="action-btn-secondary">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
+                </svg>
+                <span>Filters</span>
+              </button>
+              
+              <button class="action-btn-icon" aria-label="Layout">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="7" height="9" rx="1" />
+                  <rect x="14" y="3" width="7" height="5" rx="1" />
+                  <rect x="14" y="12" width="7" height="9" rx="1" />
+                  <rect x="3" y="16" width="7" height="5" rx="1" />
+                </svg>
+              </button>
+            </div>
+          </section>
+          
+          <!-- 3-Column Layout -->
+          <div class="docs-viewport-grid">
+            
+            <!-- Column 1: Document Library Folder Tree -->
+            <div class="docs-panel-left">
+              <h3 class="panel-section-title">Document Library</h3>
+              
+              <div class="tree-container">
+                
+                <!-- Drawings Branch -->
+                <div class="tree-node branch expanded">
+                  <button class="tree-toggle" data-node="drawings">
+                    <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                    <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span class="node-label font-semibold">Drawings</span>
+                  </button>
+                  
+                  <div class="tree-children" id="drawings-children">
+                    <button class="tree-node leaf" data-file="architectural">
+                      <svg class="file-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
+                      </svg>
+                      <span class="node-label">Architectural</span>
+                    </button>
+                    
+                    <button class="tree-node leaf active" data-file="structural">
+                      <svg class="file-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
+                      </svg>
+                      <span class="node-label">Structural</span>
+                    </button>
+                    
+                    <button class="tree-node leaf" data-file="mep">
+                      <svg class="file-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
+                      </svg>
+                      <span class="node-label">MEP</span>
+                    </button>
+                    
+                    <button class="tree-node leaf" data-file="civil">
+                      <svg class="file-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
+                      </svg>
+                      <span class="node-label">Civil</span>
+                    </button>
+                  </div>
+                </div>
+                
+                <!-- RFIs Node -->
+                <div class="tree-node leaf-row">
+                  <button class="tree-item-link" id="tree-link-rfis">
+                    <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span class="node-label">RFIs</span>
+                    <span class="node-badge">12</span>
+                  </button>
+                </div>
+                
+                <!-- Specifications Node -->
+                <div class="tree-node leaf-row">
+                  <button class="tree-item-link" id="tree-link-specs">
+                    <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span class="node-label">Specifications</span>
+                  </button>
+                </div>
+                
+                <!-- Change Orders Node -->
+                <div class="tree-node leaf-row">
+                  <button class="tree-item-link" id="tree-link-change-orders">
+                    <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span class="node-label">Change Orders</span>
+                    <span class="node-badge">4</span>
+                  </button>
+                </div>
+                
+                <!-- Contracts Node -->
+                <div class="tree-node leaf-row">
+                  <button class="tree-item-link">
+                    <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span class="node-label">Contracts</span>
+                  </button>
+                </div>
+                
+                <!-- Submittals Node -->
+                <div class="tree-node leaf-row">
+                  <button class="tree-item-link">
+                    <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span class="node-label">Submittals</span>
+                  </button>
+                </div>
+                
+                <!-- Site Photos Node -->
+                <div class="tree-node leaf-row">
+                  <button class="tree-item-link">
+                    <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span class="node-label">Site Photos</span>
+                  </button>
+                </div>
+                
+                <!-- Favorites Node -->
+                <div class="tree-node leaf-row">
+                  <button class="tree-item-link">
+                    <svg class="star-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                    </svg>
+                    <span class="node-label">Favorites</span>
+                  </button>
+                </div>
+                
+              </div>
+            </div>
+            
+            <!-- Column 2: Blueprint Viewer and Canvas -->
+            <div class="docs-panel-center">
+              <div class="drawing-viewer-header">
+                <div class="drawing-title-info">
+                  <span class="drawing-title-main" id="active-drawing-name">Structural Plan - Level 2 (S-201)</span>
+                  <span class="badge badge-accent">Rev 05</span>
+                  <span class="drawing-updated">Updated Jun 10, 2025</span>
+                </div>
+                <div class="drawing-actions">
+                  <button class="icon-btn-secondary" title="Download">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                    </svg>
+                  </button>
+                  <button class="icon-btn-secondary" title="History">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                  </button>
+                  <button class="icon-btn-secondary" title="Share">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+                      <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                    </svg>
+                  </button>
+                  <button class="icon-btn-secondary" id="blueprint-fullscreen" title="Fullscreen">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              
+              <!-- Blueprint Interactive Canvas Wrapper -->
+              <div class="blueprint-canvas-container" id="blueprint-viewport">
+                
+                <div class="blueprint-zoomable-content" id="blueprint-zoom-content">
+                  
+                  <!-- Custom SVG Architectural Blueprint -->
+                  <svg id="blueprint-svg" class="blueprint-svg" viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Blueprint Background grid and walls -->
+                    <rect width="1000" height="700" fill="#fcfdfd" />
+                    
+                    <!-- Structural Grid lines -->
+                    <g stroke="#cbd5e1" stroke-width="1" stroke-dasharray="8 4">
+                      <!-- Vertical lines -->
+                      <line x1="150" y1="50" x2="150" y2="650" />
+                      <line x1="310" y1="50" x2="310" y2="650" />
+                      <line x1="470" y1="50" x2="470" y2="650" />
+                      <line x1="630" y1="50" x2="630" y2="650" />
+                      <line x1="790" y1="50" x2="790" y2="650" />
+                      
+                      <!-- Horizontal lines -->
+                      <line x1="100" y1="150" x2="850" y2="150" />
+                      <line x1="100" y1="300" x2="850" y2="300" />
+                      <line x1="100" y1="450" x2="850" y2="450" />
+                      <line x1="100" y1="600" x2="850" y2="600" />
+                    </g>
+                    
+                    <!-- Structural Grid bubbles -->
+                    <g fill="#f8fafc" stroke="#64748b" stroke-width="1.5" font-size="12" font-family="Outfit" text-anchor="middle" font-weight="600">
+                      <!-- Top Labels (1 to 5) -->
+                      <circle cx="150" cy="35" r="14" /><text x="150" y="39">1</text>
+                      <circle cx="310" cy="35" r="14" /><text x="310" y="39">2</text>
+                      <circle cx="470" cy="35" r="14" /><text x="470" y="39">3</text>
+                      <circle cx="630" cy="35" r="14" /><text x="630" y="39">4</text>
+                      <circle cx="790" cy="35" r="14" /><text x="790" y="39">5</text>
+                      
+                      <!-- Left Labels (A to D) -->
+                      <circle cx="80" cy="150" r="14" /><text x="80" y="154">A</text>
+                      <circle cx="80" cy="300" r="14" /><text x="80" y="304">B</text>
+                      <circle cx="80" cy="450" r="14" /><text x="80" y="454">C</text>
+                      <circle cx="80" cy="600" r="14" /><text x="80" y="604">D</text>
+                    </g>
+                    
+                    <!-- Wall layout outline -->
+                    <g stroke="#334155" stroke-width="4" fill="none">
+                      <!-- External boundary -->
+                      <rect x="150" y="150" width="640" height="450" stroke-width="6"/>
+                      
+                      <!-- Internal Walls -->
+                      <!-- Kitchen & Dining divisions -->
+                      <line x1="310" y1="150" x2="310" y2="450" />
+                      <line x1="150" y1="350" x2="310" y2="350" />
+                      
+                      <!-- Dining & Living division -->
+                      <line x1="470" y1="150" x2="470" y2="300" />
+                      <line x1="470" y1="300" x2="790" y2="300" />
+                      
+                      <!-- Bedrooms partition -->
+                      <line x1="630" y1="300" x2="630" y2="600" />
+                      <line x1="470" y1="450" x2="790" y2="450" />
+                    </g>
+                    
+                    <!-- Doors and Window Swings -->
+                    <g stroke="#94a3b8" stroke-width="1.5" fill="none">
+                      <!-- Door arcs -->
+                      <path d="M 310,250 A 40,40 0 0,0 270,290" />
+                      <line x1="310" y1="250" x2="310" y2="290" />
+                      <path d="M 470,390 A 40,40 0 0,1 510,430" />
+                      <line x1="470" y1="390" x2="470" y2="430" />
+                    </g>
+                    
+                    <!-- Rooms Text labels -->
+                    <g fill="#475569" font-family="Outfit" font-size="13" font-weight="600" text-anchor="middle">
+                      <text x="230" y="220">KITCHEN</text>
+                      <text x="230" y="420">LIVING<br>ROOM</text>
+                      <text x="390" y="220">DINING</text>
+                      <text x="390" y="520">MASTER<br>BEDROOM</text>
+                      <text x="550" y="220">BEDROOM 2</text>
+                      <text x="710" y="220">BEDROOM 3</text>
+                    </g>
+                    
+                    <!-- Dimensions and markers -->
+                    <g fill="#94a3b8" font-family="Courier" font-size="10" text-anchor="middle">
+                      <text x="230" y="138">24'-0"</text>
+                      <text x="390" y="138">16'-0"</text>
+                      <text x="550" y="138">18'-0"</text>
+                      <text x="710" y="138">16'-0"</text>
+                    </g>
+                    
+                    <!-- Highlighted Tie Beam Element (Target of query) -->
+                    <!-- Located between grid C-4 to C-5. i.e. x from 630 to 790 at y=450 -->
+                    <rect id="blueprint-tie-beam" x="625" y="446" width="170" height="8" fill="#FDE047" stroke="#EAB308" stroke-width="1.5" class="highlight-pulse cursor-pointer" />
+                    
+                    <!-- Text markers for steel etc. -->
+                    <g font-family="monospace" font-size="9" fill="#64748b">
+                      <text x="210" y="250">W12x22</text>
+                      <text x="370" y="250">W12x30</text>
+                      <text x="530" y="250">W12x30</text>
+                      <text x="690" y="250">W12x22</text>
+                      <text x="720" y="480">TB-1</text>
+                    </g>
+                    
+                    <!-- Blue Marker Pin for the search result -->
+                    <!-- At center of the tie beam: x=710, y=450 -->
+                    <g id="tie-beam-marker" class="map-marker-group" transform="translate(710, 430)">
+                      <!-- Pin body -->
+                      <path d="M0 -30 C-10 -30 -15 -20 -15 -10 C-15 0 0 15 0 15 C0 15 15 0 15 -10 C15 -20 10 -30 0 -30 Z" fill="#2563EB" stroke="white" stroke-width="2" />
+                      <!-- Center circle in pin -->
+                      <circle cx="0" cy="-10" r="5" fill="white" />
+                      <!-- Marker Callout tooltip -->
+                      <g class="marker-callout" transform="translate(0, -42)">
+                        <rect x="-65" y="-30" width="130" height="28" rx="6" fill="#FEF08A" stroke="#EAB308" stroke-width="1.5" />
+                        <text x="0" y="-11" font-family="Outfit" font-size="11" font-weight="700" fill="#854D0E" text-anchor="middle">TIE BEAM (TB-1)</text>
+                      </g>
+                    </g>
+                    
+                  </svg>
+                  
+                </div>
+                
+                <!-- Floating Markup Tools Sidebar (Right aligned in canvas) -->
+                <div class="canvas-floating-toolbar-right">
+                  <button class="markup-tool-btn active" data-tool="select" title="Select">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                      <polygon points="3 3 3 16 8 13 11 21 14 20 11 12 17 12"/>
+                    </svg>
+                  </button>
+                  <button class="markup-tool-btn" data-tool="comment" title="Add Comment/Text">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                  </button>
+                  <button class="markup-tool-btn" data-tool="draw" title="Draw Pencil">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                    </svg>
+                  </button>
+                  <button class="markup-tool-btn" data-tool="cloud" title="Revision Cloud">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M12 2a5 5 0 0 0-4.8 3.5A6 6 0 0 0 8 17h11a5 5 0 0 0 1-9.9 5 5 0 0 0-8-5.1z" />
+                    </svg>
+                  </button>
+                  <button class="markup-tool-btn" data-tool="measure" title="Measure Dimension">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                      <line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="9" x2="2" y2="15"/><line x1="22" y1="9" x2="22" y2="15"/>
+                    </svg>
+                  </button>
+                  <button class="markup-tool-btn" data-tool="links" title="Link Reference">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                      <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                    </svg>
+                  </button>
+                  <button class="markup-tool-btn" data-tool="layers" title="Toggle Layers">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                      <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+                      <polyline points="2 17 12 22 22 17"/>
+                      <polyline points="2 12 12 17 22 12"/>
+                    </svg>
+                  </button>
+                </div>
+                
+                <!-- Floating Zoom Toolbar (Bottom center of canvas) -->
+                <div class="canvas-floating-toolbar-bottom">
+                  <button class="control-btn active" id="btn-pan" title="Pan Mode">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v5M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v6M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8.5M6 14.5V11a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v7.5a7.5 7.5 0 0 0 15 0v-4" />
+                    </svg>
+                  </button>
+                  <button class="control-btn" id="btn-cursor" title="Cursor Mode">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                      <polygon points="3 3 3 16 8 13 11 21 14 20 11 12 17 12"/>
+                    </svg>
+                  </button>
+                  
+                  <div class="toolbar-divider"></div>
+                  
+                  <button class="control-btn" id="btn-zoom-out" title="Zoom Out">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/>
+                    </svg>
+                  </button>
+                  
+                  <span class="zoom-value" id="zoom-percent-display">100%</span>
+                  
+                  <button class="control-btn" id="btn-zoom-in" title="Zoom In">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/>
+                    </svg>
+                  </button>
+                  
+                  <div class="toolbar-divider"></div>
+                  
+                  <button class="control-btn" id="btn-fit-screen" title="Fit to Screen">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="4 14 4 20 10 20"/><polyline points="20 6 20 12 20 6"/><rect x="3" y="3" width="18" height="18" rx="2" stroke-dasharray="4"/>
+                    </svg>
+                  </button>
+                  <button class="control-btn" id="btn-edit-lock" title="Lock Edits">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                    </svg>
+                  </button>
+                </div>
+                
+                <!-- Overlay Minimap / Navigator -->
+                <div class="blueprint-minimap-preview">
+                  <svg viewBox="0 0 1000 700" width="120" height="84">
+                    <rect width="1000" height="700" fill="#f1f5f9" rx="4"/>
+                    <rect x="150" y="150" width="640" height="450" fill="none" stroke="#94a3b8" stroke-width="10"/>
+                    <!-- Visible viewport boundary outline -->
+                    <rect id="minimap-viewfinder" x="0" y="0" width="1000" height="700" fill="none" stroke="#2563EB" stroke-width="25"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Column 3: AI Answer Panel (Right aligned) -->
+            <div class="docs-panel-right">
+              <div class="panel-header border-bottom">
+                <div class="ai-header-title">
+                  <h3 class="panel-title">AI Answer</h3>
+                  <span class="badge badge-accent uppercase tracking-wider text-xs">Beta</span>
+                </div>
+                <div class="panel-header-actions">
+                  <button class="action-btn-icon" title="Minimize">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="4 14 10 14 10 20"/><polyline points="20 10 14 10 14 4"/>
+                    </svg>
+                  </button>
+                  <button class="action-btn-icon" title="Close Panel">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              
+              <div class="panel-body flex-column gap-lg overflow-y">
+                
+                <!-- Status citation block -->
+                <div class="ai-answer-status bg-success-lightest border-all-success">
+                  <svg class="text-success flex-shrink-0" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/><polyline points="9 11 12 14 22 4"/>
+                  </svg>
+                  <p class="status-message text-success font-semibold">I found 1 tie beam matching your query.</p>
+                </div>
+                
+                <!-- Core Answer Block -->
+                <div class="ai-main-answer-card border-all">
+                  <h4 class="answer-item-title text-primary">Tie Beam (TB-1)</h4>
+                  <p class="answer-item-meta">Located on Structural Plan - Level 2 (S-201)</p>
+                  
+                  <ul class="answer-detail-list">
+                    <li>
+                      <span class="detail-label">Grid:</span>
+                      <span class="detail-value">C-4 to C-5</span>
+                    </li>
+                    <li>
+                      <span class="detail-label">Length:</span>
+                      <span class="detail-value">18'-0"</span>
+                    </li>
+                    <li>
+                      <span class="detail-label">Type:</span>
+                      <span class="detail-value">Tie Beam (TB-1)</span>
+                    </li>
+                    <li>
+                      <span class="detail-label">Elevation:</span>
+                      <span class="detail-value">10'-0"</span>
+                    </li>
+                  </ul>
+                  
+                  <div class="confidence-container">
+                    <div class="confidence-label-row">
+                      <span>Confidence</span>
+                      <span class="confidence-val font-semibold text-success">95%</span>
+                    </div>
+                    <div class="confidence-bar-track">
+                      <div class="confidence-bar-fill bg-success" style="width: 95%"></div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Source Citations -->
+                <div class="citation-block">
+                  <h4 class="block-title">Source Citation</h4>
+                  <div class="citation-card border-all hover-lift">
+                    <div class="citation-left">
+                      <span class="citation-doc-name">S-201 (Rev 05)</span>
+                      <span class="citation-doc-date">Jun 10, 2025</span>
+                    </div>
+                    <a href="#" class="citation-link text-primary" id="view-source-citation">
+                      <span>View</span>
+                      <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+                
+                <!-- Related Documents Tabs -->
+                <div class="tabs-container">
+                  <div class="tabs-header" id="related-tabs-headers">
+                    <button class="tab-link active" data-rel="rfis">RFIs <span class="tab-counter">2</span></button>
+                    <button class="tab-link" data-rel="specs">Specs <span class="tab-counter">1</span></button>
+                    <button class="tab-link" data-rel="change-orders">Change Orders <span class="tab-counter">1</span></button>
+                  </div>
+                  
+                  <div class="tabs-bodies" id="related-tabs-bodies">
+                    <!-- RFIs Tab Body -->
+                    <div class="tab-body active" id="rel-body-rfis">
+                      <div class="rel-doc-row hover-lift">
+                        <div class="rel-doc-info">
+                          <span class="rel-doc-id font-semibold">RFI-1023</span>
+                          <span class="rel-doc-title">Tie beam connection detail</span>
+                        </div>
+                        <span class="status-pill status-open">Open</span>
+                      </div>
+                      <div class="rel-doc-row hover-lift">
+                        <div class="rel-doc-info">
+                          <span class="rel-doc-id font-semibold">RFI-1056</span>
+                          <span class="rel-doc-title">Beam size confirmation</span>
+                        </div>
+                        <span class="status-pill status-answered">Answered</span>
+                      </div>
+                    </div>
+                    
+                    <!-- Specs Tab Body -->
+                    <div class="tab-body" id="rel-body-specs">
+                      <div class="rel-doc-row hover-lift">
+                        <div class="rel-doc-info">
+                          <span class="rel-doc-id font-semibold">Spec 03 30 00</span>
+                          <span class="rel-doc-title">Cast-in-Place Concrete</span>
+                        </div>
+                        <span class="status-pill status-answered">Active</span>
+                      </div>
+                    </div>
+                    
+                    <!-- Change Orders Tab Body -->
+                    <div class="tab-body" id="rel-body-change-orders">
+                      <div class="rel-doc-row hover-lift">
+                        <div class="rel-doc-info">
+                          <span class="rel-doc-id font-semibold">CO-004</span>
+                          <span class="rel-doc-title">Foundation wall reinforcement modification</span>
+                        </div>
+                        <span class="status-pill status-open">Open</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Related Drawings -->
+                <div class="drawings-citation-block">
+                  <h4 class="block-title">Related Drawings</h4>
+                  <div class="drawings-list flex-column gap-sm">
+                    <div class="drawing-link-card border-all hover-lift" data-load-dwg="s101">
+                      <svg class="file-icon text-muted" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
+                      </svg>
+                      <div class="dwg-link-center">
+                        <span class="dwg-id">S-101</span>
+                        <span class="dwg-name">Foundation Plan</span>
+                      </div>
+                      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" class="dwg-arrow">
+                        <polyline points="9 18 15 12 9 6"/>
+                      </svg>
+                    </div>
+                    
+                    <div class="drawing-link-card border-all hover-lift" data-load-dwg="s301">
+                      <svg class="file-icon text-muted" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
+                      </svg>
+                      <div class="dwg-link-center">
+                        <span class="dwg-id">S-301</span>
+                        <span class="dwg-name">Roof Framing Plan</span>
+                      </div>
+                      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" class="dwg-arrow">
+                        <polyline points="9 18 15 12 9 6"/>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Quick Actions Grid -->
+                <div class="quick-actions-block">
+                  <h4 class="block-title">Quick Actions</h4>
+                  <div class="quick-actions-grid">
+                    <button class="action-btn-secondary"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span>Open in New Tab</span></button>
+                    <button class="action-btn-secondary" id="btn-create-rfi"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg><span>Create RFI</span></button>
+                    <button class="action-btn-secondary"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg><span>Add Markup</span></button>
+                    <button class="action-btn-secondary"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg><span>Share</span></button>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+            
+          </div>
+          
+          <!-- Bottom Row: Recent Searches and Pinned Documents -->
+          <section class="docs-bottom-row">
+            
+            <!-- Recent Searches -->
+            <div class="widget-panel flex-3">
+              <div class="panel-header border-bottom">
+                <div class="panel-title-with-icon">
+                  <svg class="text-muted" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                  </svg>
+                  <h3 class="panel-title">Recent Searches</h3>
+                </div>
+                <a href="#" class="view-all-link">View all</a>
+              </div>
+              <div class="panel-body no-padding">
+                <div class="recent-searches-list">
+                  <div class="search-history-item hover-lift cursor-pointer" data-query="Where is the tie beam?">
+                    <span class="search-history-text font-semibold">Where is the tie beam?</span>
+                    <span class="search-history-time">Today, 10:24 AM</span>
+                  </div>
+                  <div class="search-history-item hover-lift cursor-pointer" data-query="Roof framing details">
+                    <span class="search-history-text font-semibold">Roof framing details</span>
+                    <span class="search-history-time">Today, 9:15 AM</span>
+                  </div>
+                  <div class="search-history-item hover-lift cursor-pointer" data-query="Kitchen window schedule">
+                    <span class="search-history-text font-semibold">Kitchen window schedule</span>
+                    <span class="search-history-time">Yesterday, 4:45 PM</span>
+                  </div>
+                  <div class="search-history-item hover-lift cursor-pointer" data-query="Electrical panel location">
+                    <span class="search-history-text font-semibold">Electrical panel location</span>
+                    <span class="search-history-time">Jun 9, 2025</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Pinned Documents -->
+            <div class="widget-panel flex-7">
+              <div class="panel-header border-bottom">
+                <div class="panel-title-with-icon">
+                  <svg class="text-muted" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
+                  </svg>
+                  <h3 class="panel-title">Pinned Documents</h3>
+                </div>
+                <a href="#" class="view-all-link">View all</a>
+              </div>
+              <div class="panel-body">
+                <div class="pinned-docs-grid">
+                  
+                  <div class="pinned-card hover-lift">
+                    <div class="pinned-doc-icon-wrapper pdf">PDF</div>
+                    <div class="pinned-doc-details">
+                      <h4 class="pinned-doc-name" title="Permit Set - Full Package.pdf">Permit Set - Full Package.pdf</h4>
+                      <span class="pinned-doc-info-row">Rev 02 <span class="dot-sep">•</span> May 28, 2025 <span class="dot-sep">•</span> 24.6 MB</span>
+                    </div>
+                  </div>
+                  
+                  <div class="pinned-card hover-lift">
+                    <div class="pinned-doc-icon-wrapper pdf">PDF</div>
+                    <div class="pinned-doc-details">
+                      <h4 class="pinned-doc-name" title="Structural Package.pdf">Structural Package.pdf</h4>
+                      <span class="pinned-doc-info-row">Rev 05 <span class="dot-sep">•</span> Jun 10, 2025 <span class="dot-sep">•</span> 31.4 MB</span>
+                    </div>
+                  </div>
+                  
+                  <div class="pinned-card hover-lift">
+                    <div class="pinned-doc-icon-wrapper ifc">IFC</div>
+                    <div class="pinned-doc-details">
+                      <h4 class="pinned-doc-name" title="IFC Model - Architectural.ifc">IFC Model - Architectural.ifc</h4>
+                      <span class="pinned-doc-info-row">Rev 01 <span class="dot-sep">•</span> May 20, 2025 <span class="dot-sep">•</span> 98.3 MB</span>
+                    </div>
+                  </div>
+                  
+                  <div class="pinned-card hover-lift">
+                    <div class="pinned-doc-icon-wrapper pdf">PDF</div>
+                    <div class="pinned-doc-details">
+                      <h4 class="pinned-doc-name" title="Client Selections.pdf">Client Selections.pdf</h4>
+                      <span class="pinned-doc-info-row">Rev 01 <span class="dot-sep">•</span> May 18, 2025 <span class="dot-sep">•</span> 12.7 MB</span>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+            
+          </section>
+          
+        </div>
+        
+        <!-- ==================== MY TASKS DETAILED VIEW ==================== -->
+        <div class="view-tab" id="tab-content-tasks">
+          <div class="tasks-page-header">
+            <div class="tasks-page-title-area">
+              <h1 class="tasks-main-title font-header">My Tasks</h1>
+              <span class="tasks-meta-subtitle" id="tasks-open-count">50 open across all projects</span>
+            </div>
+            
+            <div class="tasks-actions-header">
+              <div class="tasks-tab-filters">
+                <button class="task-filter-btn active" data-status="open">Open</button>
+                <button class="task-filter-btn" data-status="done">Done</button>
+                <button class="task-filter-btn" data-status="mine">Mine</button>
+                <button class="task-filter-btn" data-status="all">All</button>
+              </div>
+              
+              <div class="tasks-search-filter">
+                <input type="text" id="task-table-search" placeholder="Search tasks..." autocomplete="off">
+              </div>
+              
+              <div class="select-wrapper">
+                <select id="tasks-grouping">
+                  <option value="project" selected>Group: Project</option>
+                  <option value="room">Group: Room</option>
+                  <option value="status">Group: Status</option>
+                </select>
+              </div>
+              
+              <button class="action-btn-primary" id="btn-add-task-modal">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                <span>Add Task</span>
+              </button>
+            </div>
+          </div>
+          
+          <div class="widget-panel">
+            <div class="panel-body no-padding">
+              <div class="tasks-table-container">
+                <table class="tasks-detail-table">
+                  <thead>
+                    <tr>
+                      <th style="width: 40px;"><input type="checkbox" id="select-all-tasks"></th>
+                      <th>Task Title</th>
+                      <th>Project / House</th>
+                      <th>Room / Area</th>
+                      <th>Assignee</th>
+                      <th>Due Date</th>
+                      <th>Priority</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="detailed-tasks-tbody">
+                    <!-- Loaded dynamically via app.js -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== GS3 PORTFOLIO & REVIEWS VIEW ==================== -->
+        <div class="view-tab" id="tab-content-gs3-portfolio">
+          <div class="portfolio-page-header">
+            <span class="badge badge-accent uppercase tracking-wider text-xs">Featured Client Case Study</span>
+            <h1 class="portfolio-title font-header">One Bold Life: Onboarding &amp; Progress Tracker</h1>
+            <p class="portfolio-subtitle text-muted">A customized e-learning workbook and diagnostic progress tracker built by GS3 Solutions using Firebase &amp; Expo.</p>
+          </div>
+
+          <!-- Main Case Study Hero Section -->
+          <div class="widget-panel mb-lg" style="background: linear-gradient(135deg, rgba(124, 58, 237, 0.05) 0%, rgba(99, 102, 241, 0.05) 100%); border-left: 4px solid var(--primary);">
+            <div class="panel-body" style="padding: 24px;">
+              <div style="display: flex; gap: 12px; margin-bottom: 16px;">
+                <span class="badge badge-accent uppercase" style="background-color: var(--primary); color: white; border: none; font-size: 10px; padding: 4px 10px;">Mobile Client App</span>
+                <span class="badge badge-success-light uppercase" style="font-size: 10px; padding: 4px 10px;">Firebase &amp; Firestore</span>
+              </div>
+              <h2 class="font-header text-xl mb-sm" style="color: var(--text-main); font-weight: 800;">Developing a Customized E-Learning Workbook</h2>
+              <p class="text-xs text-muted mb-md" style="line-height: 1.6; max-width: 800px;">
+                GS3 Solutions engineered a modern, offline-first mobile application designed to guide users through personalized milestone tracks, interactive worksheets, and progress audits. Users complete structured reflections and goal plan sheets that synchronize directly with Firebase serverless backends under tight validation rules.
+              </p>
+              <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-top: 20px; border-top: 1px solid var(--border-color); padding-top: 16px;">
+                <div>
+                  <span class="text-xs text-muted block font-semibold uppercase tracking-wider" style="font-size: 9px;">DATABASE BACKEND</span>
+                  <span class="font-bold text-xs" style="color: var(--text-main);">Firebase &amp; Cloud Firestore</span>
+                </div>
+                <div style="border-left: 1px solid var(--border-color); padding-left: 16px;">
+                  <span class="text-xs text-muted block font-semibold uppercase tracking-wider" style="font-size: 9px;">MOBILE FRAMEWORK</span>
+                  <span class="font-bold text-xs" style="color: var(--text-main);">React Native &amp; Expo</span>
+                </div>
+                <div style="border-left: 1px solid var(--border-color); padding-left: 16px;">
+                  <span class="text-xs text-muted block font-semibold uppercase tracking-wider" style="font-size: 9px;">VERIFICATION LATENCY</span>
+                  <span class="font-bold text-xs text-success" style="color: var(--success); font-weight: 700;">&lt; 120ms sync latency</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Video Demo & Architecture Grid -->
+          <div class="portfolio-hero-grid mb-lg">
+            
+            <!-- Video Demonstration -->
+            <div class="widget-panel">
+              <div class="panel-header border-bottom">
+                <h3 class="panel-title font-header">Video Walkthrough</h3>
+              </div>
+              <div class="panel-body no-padding" style="background-color: #000; overflow: hidden; border-radius: 0 0 var(--radius-md) var(--radius-md);">
+                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
+                  <iframe src="https://www.youtube.com/embed/TL4jrdHJNGU" title="One Bold Life Walkthrough" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+                </div>
+              </div>
+            </div>
+
+            <!-- Architecture Components -->
+            <div class="widget-panel">
+              <div class="panel-header border-bottom">
+                <h3 class="panel-title font-header">System Deliverables</h3>
+              </div>
+              <div class="panel-body" style="padding: 16px; display: flex; flex-direction: column; gap: 12px;">
+                <div class="ai-intel-card border-left-primary bg-primary-lightest" style="padding: 12px;">
+                  <h5 class="font-header text-xs font-bold" style="margin: 0 0 4px 0; color: var(--text-main);">1. Firebase Backend Infrastructure</h5>
+                  <p class="text-xs text-muted" style="margin: 0; line-height: 1.4;">Configured serverless hosting, user token validations, and automated security rules.</p>
+                </div>
+                
+                <div class="ai-intel-card border-left-success bg-success-lightest" style="padding: 12px;">
+                  <h5 class="font-header text-xs font-bold" style="margin: 0 0 4px 0; color: var(--text-main);">2. Secure Auth welcome Pathways</h5>
+                  <p class="text-xs text-muted" style="margin: 0; line-height: 1.4;">Seamless client email/password authentication checking and cached session states.</p>
+                </div>
+
+                <div class="ai-intel-card border-left-warning bg-warning-lightest" style="padding: 12px;">
+                  <h5 class="font-header text-xs font-bold" style="margin: 0 0 4px 0; color: var(--text-main);">3. Interactive Smart Planners</h5>
+                  <p class="text-xs text-muted" style="margin: 0; line-height: 1.4;">Goal planners executing real-time data commits with consultation unlock thresholds.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Scraped Features List & Client Quote -->
+          <div class="portfolio-outcomes-grid mb-lg">
+            
+            <div class="pain-card" style="padding: 24px; cursor: default;">
+              <h4 class="font-header text-sm font-bold mb-md" style="color: var(--text-main); margin-bottom: 12px;">Proven Outcomes &amp; Code Scopes</h4>
+              <ul class="text-xs text-muted" style="display: flex; flex-direction: column; gap: 10px; padding-left: 0; list-style: none;">
+                <li style="display: flex; gap: 8px; align-items: flex-start;">
+                  <span style="color: var(--success); font-weight: 700;">✓</span>
+                  <span><strong>Milestone 1 Validation:</strong> Completed core client workbook interfaces and database models.</span>
+                </li>
+                <li style="display: flex; gap: 8px; align-items: flex-start;">
+                  <span style="color: var(--success); font-weight: 700;">✓</span>
+                  <span><strong>Firestore Schema Setup:</strong> Structured records mapping profile data and user reflections.</span>
+                </li>
+                <li style="display: flex; gap: 8px; align-items: flex-start;">
+                  <span style="color: var(--success); font-weight: 700;">✓</span>
+                  <span><strong>Consultation Safety Lock:</strong> Automatically gating consultation schedules until 8 workbook exercises are fully validated.</span>
+                </li>
+                <li style="display: flex; gap: 8px; align-items: flex-start;">
+                  <span style="color: var(--success); font-weight: 700;">✓</span>
+                  <span><strong>Aesthetic Fluid Layouts:</strong> Clean, clutter-free mobile UI designs conforming to premium fonts.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="pain-card" style="background-color: var(--primary-lightest); border: 1px solid var(--border-color); padding: 24px; display: flex; flex-direction: column; justify-content: space-between; cursor: default;">
+              <p class="font-header text-xs" style="font-style: italic; line-height: 1.6; color: var(--text-main); margin-bottom: 16px;">
+                "The Firebase data synchronization, authentication welcome flows, and smart interactive planners have been delivered in line with Milestone 1 specifications."
+              </p>
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="width: 32px; height: 32px; border-radius: 50%; background-color: var(--primary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 11px;">💼</div>
+                <div>
+                  <h5 class="font-header text-xs font-bold" style="margin: 0; color: var(--text-main);">One Bold Life™</h5>
+                  <p class="text-muted" style="font-size: 9px; margin: 0; font-weight: 700; text-transform: uppercase;">USA Enterprise Client Partner</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Bottom CTA Block to GS3 Solutions site -->
+          <div class="widget-panel" style="background-color: var(--text-main); border: none; text-align: center; padding: 32px 24px;">
+            <span class="text-xs uppercase tracking-widest block font-bold mb-xs" style="color: rgba(255,255,255,0.6);">Looking for more examples?</span>
+            <h3 class="font-header text-lg mb-md" style="color: white; font-weight: 800; margin-bottom: 16px;">Explore Case Studies on the GS3 Website</h3>
+            <p class="text-xs mb-lg" style="color: rgba(255,255,255,0.7); max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.6;">
+              From multi-tenant SaaS ERP implementations to advanced CAD drawing viewers and speech-to-text logging engines, see how GS3 Solution builds enterprise applications globally.
+            </p>
+            <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+              <a href="https://gs3solution.com/case-study" target="_blank" class="action-btn-primary" style="background-color: var(--primary); text-decoration: none; padding: 12px 24px; font-size: 12px; font-weight: 700;">
+                Go to GS3 Case Studies
+              </a>
+              <a href="https://gs3solution.com/contact" target="_blank" class="action-btn-secondary" style="border-color: rgba(255,255,255,0.3); color: white; text-decoration: none; padding: 12px 24px; font-size: 12px; font-weight: 700;">
+                Consult an AI Architect
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ==================== GS3 PROJECT ROADMAP VIEW ==================== -->
+        <div class="view-tab" id="tab-content-gs3-sop">
+          <div class="sop-page-header">
+            <span class="badge badge-accent uppercase tracking-wider text-xs">Strategic Proposal Report</span>
+            <h1 class="sop-title font-header">Strategic Technology Roadmap</h1>
+            <p class="sop-subtitle text-muted">Prepared exclusively for <strong>Stacey Schrager</strong>, Director of Business Development at <strong>K2 Construction Group, Inc.</strong> by GS3 Solutions.</p>
+          </div>
+
+          <!-- Section 1: 3-Phase Roadmap Structure (4 Initiatives per Phase) -->
+          <div class="sop-heading mt-md mb-sm">
+            <h2 class="font-header text-lg">1. 3-Phase Project Organization</h2>
+            <p class="text-xs text-muted">To manage development risks and ensure early adoption, K2's 12 initiatives are grouped into 3 strategic phases containing 4 modules each.</p>
+          </div>
+          <div class="roadmap-stages-grid">
+            <div class="stage-card border-left-primary">
+              <div class="stage-header">
+                <div class="stage-num-badge bg-primary-lightest text-primary">01</div>
+                <h4 class="stage-title font-header" style="margin:0;">Phase 1: Operational Foundation</h4>
+              </div>
+              <p class="stage-desc" style="margin:0;">Establish the data core. Build projects/rooms hierarchies, voice-first task reporting, versioned blueprint directory, and finished-materials shopping list.</p>
+              <div class="stage-initiatives">
+                <span class="init-pill init-pill-primary">Projects &amp; Rooms</span>
+                <span class="init-pill init-pill-primary">Tasks &amp; Daily Reports</span>
+                <span class="init-pill init-pill-primary">Plans &amp; Documents</span>
+                <span class="init-pill init-pill-primary">Materials List</span>
+              </div>
+              <div class="stage-footer" style="margin-top:auto; border-top: 1px solid var(--border-light); padding-top: 8px;">
+                <span class="stage-sprints">7 Sprints (Sprints 1-7)</span>
+                <span class="stage-scope">4 Initiatives Included</span>
+              </div>
+            </div>
+            
+            <div class="stage-card border-left-success">
+              <div class="stage-header">
+                <div class="stage-num-badge bg-success-lightest text-success">02</div>
+                <h4 class="stage-title font-header" style="margin:0;">Phase 2: Operations &amp; Finance</h4>
+              </div>
+              <p class="stage-desc" style="margin:0;">Control timeline and money. Build the task-linked schedule timeline, trade-line estimates builder, budget balances with allowance lookup, and sub invoice parser.</p>
+              <div class="stage-initiatives">
+                <span class="init-pill init-pill-success">Schedule Engine</span>
+                <span class="init-pill init-pill-success">Estimates worksheets</span>
+                <span class="init-pill init-pill-success">Budgets &amp; Allowances</span>
+                <span class="init-pill init-pill-success">Invoice Ingestion</span>
+              </div>
+              <div class="stage-footer" style="margin-top:auto; border-top: 1px solid var(--border-light); padding-top: 8px;">
+                <span class="stage-sprints" style="color: var(--success);">5 Sprints (Sprints 8-12)</span>
+                <span class="stage-scope">4 Initiatives Included</span>
+              </div>
+            </div>
+
+            <div class="stage-card border-left-purple">
+              <div class="stage-header">
+                <div class="stage-num-badge bg-purple-lightest text-purple">03</div>
+                <h4 class="stage-title font-header" style="margin:0;">Phase 3: Portals, Chat &amp; AI</h4>
+              </div>
+              <p class="stage-desc" style="margin:0;">Connect and automate. Build project-specific chat threads, subcontractor voice/text integrations, homeowner portal, and natural language AI plans Q&A assistant.</p>
+              <div class="stage-initiatives">
+                <span class="init-pill init-pill-purple">Internal Chat Thread</span>
+                <span class="init-pill init-pill-purple">Homeowner Portal</span>
+                <span class="init-pill init-pill-purple">AI Project Assistant</span>
+                <span class="init-pill init-pill-purple">Reporting &amp; scorecards</span>
+              </div>
+              <div class="stage-footer" style="margin-top:auto; border-top: 1px solid var(--border-light); padding-top: 8px;">
+                <span class="stage-sprints" style="color: var(--purple);">6 Sprints (Sprints 13-18)</span>
+                <span class="stage-scope">4 Initiatives Included</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 2: Full Initiatives Timeline -->
+          <div class="sop-heading mt-lg mb-sm">
+            <h2 class="font-header text-lg">2. 12-Initiative Implementation Timeline</h2>
+            <p class="text-xs text-muted">A sequential roadmap for delivering K2's custom features, organized by phase for clear operational delivery.</p>
+          </div>
+
+          <div class="timeline-cols-grid mb-lg">
+            
+            <!-- Column 1: Phase 1 -->
+            <div class="timeline-col">
+              <div class="timeline-col-header">
+                <div class="timeline-col-title" style="color: var(--primary);">
+                  <span class="step-icon" style="background-color: var(--primary-light); color: var(--primary); width: 22px; height: 22px; font-size: 11px;">1</span>
+                  <span>Phase 1: Foundation</span>
+                </div>
+                <div class="timeline-col-subtitle">Weeks 1 - 14 • 7 Sprints</div>
+              </div>
+              
+              <div class="timeline-card" style="border-left: 3px solid var(--primary);">
+                <div class="timeline-card-header">
+                  <span class="timeline-card-title">1. Projects &amp; Rooms</span>
+                  <span class="timeline-card-badge">Sprints 1-2</span>
+                </div>
+                <p class="timeline-card-desc">Centralized admin dashboard organizing renovation jobs room-by-room with instant status monitors.</p>
+              </div>
+
+              <div class="timeline-card" style="border-left: 3px solid var(--primary);">
+                <div class="timeline-card-header">
+                  <span class="timeline-card-title">2. Tasks &amp; Daily Reports</span>
+                  <span class="timeline-card-badge">Sprints 3-4</span>
+                </div>
+                <p class="timeline-card-desc">Speech-to-text site logging for field managers to dictate updates and auto-generate checklists.</p>
+              </div>
+
+              <div class="timeline-card" style="border-left: 3px solid var(--primary);">
+                <div class="timeline-card-header">
+                  <span class="timeline-card-title">3. Plans &amp; Documents</span>
+                  <span class="timeline-card-badge">Sprints 5-6</span>
+                </div>
+                <p class="timeline-card-desc">Cloud drawing catalog and version control ensuring crews always build from the latest approved blueprint.</p>
+              </div>
+
+              <div class="timeline-card" style="border-left: 3px solid var(--primary);">
+                <div class="timeline-card-header">
+                  <span class="timeline-card-title">4. Materials List</span>
+                  <span class="timeline-card-badge">Sprint 7</span>
+                </div>
+                <p class="timeline-card-desc">Interactive shopping selections tracking responsibilities, suppliers, and arrival dates on site.</p>
+              </div>
+            </div>
+
+            <!-- Column 2: Phase 2 -->
+            <div class="timeline-col">
+              <div class="timeline-col-header">
+                <div class="timeline-col-title" style="color: var(--success);">
+                  <span class="step-icon" style="background-color: var(--success-light); color: var(--success); width: 22px; height: 22px; font-size: 11px;">2</span>
+                  <span>Phase 2: Operations</span>
+                </div>
+                <div class="timeline-col-subtitle">Weeks 15 - 24 • 5 Sprints</div>
+              </div>
+              
+              <div class="timeline-card" style="border-left: 3px solid var(--success);">
+                <div class="timeline-card-header">
+                  <span class="timeline-card-title">5. Schedule Engine</span>
+                  <span class="timeline-card-badge">Sprints 8-9</span>
+                </div>
+                <p class="timeline-card-desc">Interactive Gantt timeline linked to active tasks that auto-alerts sub trades if schedule dates shift.</p>
+              </div>
+
+              <div class="timeline-card" style="border-left: 3px solid var(--success);">
+                <div class="timeline-card-header">
+                  <span class="timeline-card-title">6. Estimates Builder</span>
+                  <span class="timeline-card-badge">Sprint 10</span>
+                </div>
+                <p class="timeline-card-desc">Bespoke bidding worksheets featuring preset square-foot trade rates to speed up client quotes.</p>
+              </div>
+
+              <div class="timeline-card" style="border-left: 3px solid var(--success);">
+                <div class="timeline-card-header">
+                  <span class="timeline-card-title">7. Budgets &amp; Allowances</span>
+                  <span class="timeline-card-badge">Sprint 11</span>
+                </div>
+                <p class="timeline-card-desc">Real-time ledger tracking client allowance balances, payments made, and upgrade deltas.</p>
+              </div>
+
+              <div class="timeline-card" style="border-left: 3px solid var(--success);">
+                <div class="timeline-card-header">
+                  <span class="timeline-card-title">8. Invoice Ingestion</span>
+                  <span class="timeline-card-badge">Sprint 12</span>
+                </div>
+                <p class="timeline-card-desc">Automated subcontractor billing email parser routing parsed invoices for PM office approvals.</p>
+              </div>
+            </div>
+
+            <!-- Column 3: Phase 3 -->
+            <div class="timeline-col">
+              <div class="timeline-col-header">
+                <div class="timeline-col-title" style="color: var(--purple);">
+                  <span class="step-icon" style="background-color: var(--purple-light); color: var(--purple); width: 22px; height: 22px; font-size: 11px;">3</span>
+                  <span>Phase 3: Intelligence</span>
+                </div>
+                <div class="timeline-col-subtitle">Weeks 25 - 36 • 6 Sprints</div>
+              </div>
+              
+              <div class="timeline-card" style="border-left: 3px solid var(--purple);">
+                <div class="timeline-card-header">
+                  <span class="timeline-card-title">9. Project Chat Threads</span>
+                  <span class="timeline-card-badge">Sprint 13</span>
+                </div>
+                <p class="timeline-card-desc">Secure, searchable channels dedicated to individual renovation jobs, replacing text trails.</p>
+              </div>
+
+              <div class="timeline-card" style="border-left: 3px solid var(--purple);">
+                <div class="timeline-card-header">
+                  <span class="timeline-card-title">10. Homeowner Portal</span>
+                  <span class="timeline-card-badge">Sprints 14-15</span>
+                </div>
+                <p class="timeline-card-desc">Premium customer workspace highlighting progress timelines, site photos, and sign-offs.</p>
+              </div>
+
+              <div class="timeline-card" style="border-left: 3px solid var(--purple);">
+                <div class="timeline-card-header">
+                  <span class="timeline-card-title">11. AI Project Assistant</span>
+                  <span class="timeline-card-badge">Sprints 16-17</span>
+                </div>
+                <p class="timeline-card-desc">Natural-language assistant answering queries regarding blueprints and design selections.</p>
+              </div>
+
+              <div class="timeline-card" style="border-left: 3px solid var(--purple);">
+                <div class="timeline-card-header">
+                  <span class="timeline-card-title">12. Scorecards &amp; KPI</span>
+                  <span class="timeline-card-badge">Sprint 18</span>
+                </div>
+                <p class="timeline-card-desc">KPI metrics tracking subcontractor schedule adherence and superintendent blocker logs.</p>
+              </div>
+            </div>
+            
+          </div>
+
+          <!-- Section 3: Proposal Investment Structure -->
+          <div class="sop-heading mt-lg mb-sm">
+            <h2 class="font-header text-lg">3. Proposal Investment Structure</h2>
+            <p class="text-xs text-muted">Fixed proposed amount for the entire project roadmap (Negotiable based on final scope discovery).</p>
+          </div>
+          
+          <div class="calc-tier-grid mb-md" style="grid-template-columns: 1fr;">
+            <div class="calc-tier-card active" style="cursor: default; max-width: 100%;">
+              <div class="tier-card-body" style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; padding: 20px;">
+                <div style="flex: 2; min-width: 280px;">
+                  <div class="tier-card-header-row" style="margin-bottom: 8px;">
+                    <span class="tier-name font-header" style="font-size: 18px;">Proposed Complete 3-Phase Project Roadmap</span>
+                    <span class="badge badge-success-light" style="position: static; border: none; padding: 4px 8px; font-size: 10px;">Fixed &amp; Negotiable</span>
+                  </div>
+                  <p class="tier-desc" style="max-width: 650px; margin-bottom: 0;">Covers all 3 Phases of the project roadmap (18 Sprints / 36 Weeks) plus the mandatory discovery and module planning baseline for all 12 modules. Includes custom workflow development, blueprint redline viewer, lived schedule Gantt, estimates builder, allowance tracking, invoicing parsing, homeowner portals, internal chat, and AI blueprint assistant. Proposed sprint rate: $3,500/sprint.</p>
+                </div>
+                <div style="text-align: right; min-width: 180px;">
+                  <span class="tier-price" style="font-size: 32px; display: block; line-height: 1; font-weight: 800; color: var(--primary);">$77,388</span>
+                  <span class="text-xs text-muted font-semibold" style="margin-top: 4px; display: block;">Proposed Complete Investment (All Phases + Planning)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Summary Pricing Table -->
+          <div class="widget-panel mb-md">
+            <div class="panel-header border-bottom">
+              <h3 class="panel-title font-header">Proposed Budget Breakdown</h3>
+            </div>
+            <div class="panel-body no-padding">
+              <div class="tasks-table-container">
+                <table class="sop-table">
+                  <thead>
+                    <tr>
+                      <th>Roadmap Item / Phase</th>
+                      <th>Implementation Sprints</th>
+                      <th class="text-right" style="padding-right: 24px;">Proposed Investment</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="font-semibold">Discovery & Module Planning Baseline (12 Modules)</td>
+                      <td>Flat Fee (Discovery Phase)</td>
+                      <td class="font-bold text-right" style="padding-right: 24px;">$14,388</td>
+                    </tr>
+                    <tr>
+                      <td class="font-semibold">Phase 1: Operational Foundation (Initiatives 1-4)</td>
+                      <td>7 Sprints (14 Weeks)</td>
+                      <td class="font-bold text-right" style="padding-right: 24px;">$24,500</td>
+                    </tr>
+                    <tr>
+                      <td class="font-semibold">Phase 2: Operations & Finance (Initiatives 5-8)</td>
+                      <td>5 Sprints (10 Weeks)</td>
+                      <td class="font-bold text-right" style="padding-right: 24px;">$17,500</td>
+                    </tr>
+                    <tr>
+                      <td class="font-semibold">Phase 3: Portals, Chat & AI (Initiatives 9-12)</td>
+                      <td>6 Sprints (12 Weeks)</td>
+                      <td class="font-bold text-right" style="padding-right: 24px;">$21,000</td>
+                    </tr>
+                    <tr style="background-color: var(--primary-lightest); border-top: 1.5px solid var(--border-color); border-bottom: 1.5px solid var(--border-color);">
+                      <td class="font-bold">Total Complete 3-Phase Project Roadmap</td>
+                      <td class="font-bold">18 Sprints (36 Weeks)</td>
+                      <td class="font-extrabold text-primary text-right" style="font-size: 16px; padding-right: 24px;">$77,388</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="alert-info-box p-md bg-primary-lightest border-left-primary rounded-md mb-lg">
+            <p class="text-xs text-main">
+              💡 <strong>Proposal Status:</strong> This technology roadmap is fixed and negotiable based on final scope discovery. Sprints are billed bi-weekly at a flat rate of $3,500/sprint.
+            </p>
+          </div>
+        </div>
+      </div>
+      
+    </main>
+    
+  </div>
+  
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
