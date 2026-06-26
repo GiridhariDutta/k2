@@ -598,15 +598,24 @@ body {
 }
 
 .badge {
-  position: absolute;
-  top: 2px;
-  right: 2px;
+  display: inline-block;
   border-radius: 10px;
-  padding: 1.5px 5px;
-  font-size: 9px;
+  padding: 3px 8px;
+  font-size: 10px;
   font-weight: 700;
   color: var(--white);
   line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.icon-btn .badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  padding: 1.5px 5px;
+  font-size: 9px;
   border: 1.5px solid var(--white);
 }
 
@@ -616,6 +625,12 @@ body {
 
 .badge-accent {
   background-color: var(--primary);
+}
+
+.badge-success-light {
+  background-color: var(--success-lightest);
+  color: var(--success-hover);
+  border: 1px solid rgba(16, 185, 129, 0.2);
 }
 
 .user-profile {
